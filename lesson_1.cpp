@@ -1,15 +1,16 @@
 #include <iostream>
+#include <cmath>
 
 using namespace std;
-long int s;
 
-int main() {
-  for (long int i = 1; i <= 1000000000; i++)
+int main()
+{
+  long int s;
+  s = 0;
+
+  for (long int i = 1; i < pow(10,9); i++)
   {
-    i = i + 1;
     s = s + i;
-    return s;
   }
-  cout << s;
-  return 0;
+  cout << s << endl;
 }
