@@ -6,7 +6,7 @@ class ivanovii extends lab
   /**
    * Метод Гаусса
    */
-  virtual void lab1()0;
+  virtual void lab1();
   /**
    * Метод Гаусса с выбором главного элемента
    */
