@@ -1,23 +1,90 @@
-#include <iostream>
-#include <cmath>
-using namespace std;
+#include "ploduhindm.h"
 
-int main()
+/**
+ * Метод Гаусса
+ */
+void ploduhindm::lab1()
 {
-    float s=0,x;
-    for (int i=1; i<=pow(10,9);i++)
-    {
-       x=i;
-       s+=(1.0/(x*x));
-    }
+    for (int i = 0; i < n; i++)
+        x[i] = b[i];
+     long double m;
+     for (int k = 0; k < n; k++)
+        {
+             for (int i = k+1; i < n; i++)
+             {
+ 				m = A[i][k] / A[k][k];
+  				for (int j = k; j < n; j++)
+                {
+  					A[i][j]-=m * A[k][j];
+  				}
+                 x[i]-=m * x[k];
 
-    cout << s << endl;
-    s=0;
-    for (int i=pow(10,9);i>=1;i--)
-     {
-       x=i;
-       s+=(1.0/(x*x));
+             }
+        }
+
+    for (int i=n-1;i>=0;i--)
+    {
+        for (int j=i+1;j<n;j++)
+                x[i]-=A[i][j]*x[j];
+        x[i]/=A[i][i];
     }
-    cout << s;
-    return 0;
+}
+
+
+/**
+ * Метод Гаусса с выбором главного элемента
+ */
+void ploduhindm::lab2()
+{
+
+}
+
+
+
+/**
+ * Метод квадратного корня (метод Холецкого)
+ */
+void ploduhindm::lab3()
+{
+
+}
+
+
+
+/**
+ * Метод прогонки
+ */
+void ploduhindm::lab4()
+{
+
+}
+
+
+
+/**
+ * Метод Якоби
+ */
+void ploduhindm::lab5()
+{
+
+}
+
+
+
+/**
+ * Метод Зейделя
+ */
+void ploduhindm::lab6()
+{
+
+}
+
+
+
+/**
+ * Один из градиентных методов
+ */
+void ploduhindm::lab7()
+{
+
 }
