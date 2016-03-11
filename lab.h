@@ -9,6 +9,7 @@ public:
   void run(int lab_number);
   void write_result();
   void check_result();
+  virtual ~lab();
 protected:
   int N;
   double **A, *b, *x;

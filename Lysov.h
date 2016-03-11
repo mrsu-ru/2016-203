@@ -1,7 +1,7 @@
 #pragma once
 #include "lab.h"
 
-class Lysov extends lab
+class Lysov : public lab
 {
   /**
    * Метод Гаусса
@@ -31,4 +31,4 @@ class Lysov extends lab
    * Один из градиентных методов
    */
   virtual void lab7();
-}
+};

@@ -2,6 +2,7 @@
 #include <cstring>
 #include "lab.h"
 #include "ivanovii.h"
+#include <iostream>
 
 void print_usage();
 
@@ -36,5 +37,5 @@ int main(int argc, char** argv)
 
 void print_usage()
 {
-
+  std::cout << "Hello World!\n";
 }
