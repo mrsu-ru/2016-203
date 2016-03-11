@@ -9,11 +9,11 @@ for (k=0;k<n;k++)
     {
         for(i=k+1;i<n;i++)
         {
-            y=a[i][k]/a[k][k];
+            y=A[i][k]/A[k][k];
             b[i]-=b[k]*y;
             for(j=0;j<n;j++)
             {
-                a[i][j]-=a[k][j]*y;
+                A[i][j]-=A[k][j]*y;
             }
         }
     }
@@ -21,10 +21,10 @@ for (k=0;k<n;k++)
         for(i=n-1;i>=0;i--)
         {
 
-            x[i]=b[i]/a[i][i];
+            x[i]=b[i]/A[i][i];
             for(j=i+1;j<n;j++)
             {
-                x[i]+=-a[i][j]*x[j]/a[i][i];
+                x[i]+=-A[i][j]*x[j]/A[i][i];
             }
         }
 }
