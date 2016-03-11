@@ -1,4 +1,4 @@
-#include "ivanovii.h"
+#include "zelyunko.h"
 
 /**
  * Метод Гаусса
