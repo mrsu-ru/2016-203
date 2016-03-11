@@ -25,33 +25,7 @@ int main(int argc, char** argv)
     return 0;
   }
 
-  int n = 100;
-  double **a = new double*[n];
-  double *b = new double[n];
-  double *x = new double[n];
-  for (int i= 0; i < n; i++) {
-    a[i] = new double[n];
-  }
-
-  l->init(n, a, b, x);
-
-  for (int i = 1; i < n-1; i++) {
-    for (int j = 0; j < n; j++) {
-      if (j == i-1) {
-        a[i][j] = 1.0;
-      }
-      else if (j == i) {
-        a[i][j] = -2.0;
-      }
-      else if (j == i+1) {
-        a[i][j] = 1.0;
-      }
-      else {
-        a[i][j] = 0.0;
-      }
-    }
-  }
-
+  l->read_file();
   l->run(atoi(argv[2]));
   l->write_result();
   l->check_result();

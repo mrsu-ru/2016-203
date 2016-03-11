@@ -4,7 +4,6 @@
 class lab
 {
 public:
-  void init(int N, double **A, double *b, double *x);
   void read_file();
   void run(int lab_number);
   void write_result();
