@@ -1,7 +1,7 @@
 #pragma once
 #include "lab.h"
 
-class Lisov extends lab
+class Lysov extends lab
 {
   /**
    * Метод Гаусса
