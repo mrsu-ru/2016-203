@@ -1,7 +1,7 @@
 #include "cheboksarovv.h"
 
 /**
-	* Метод Гаусса
+	* ГЊГҐГІГ®Г¤ ГѓГ ГіГ±Г±Г 
 	*/
 void cheboksarovv::lab1()
 {
@@ -10,10 +10,10 @@ void cheboksarovv::lab1()
      {
       for(int i=k+1;i<N;i++)
       { 
-       koefc=a[i][k]/a[k][k];
+       koefc=A[i][k]/a[k][k];
        for(int j=k;j<N;j++)
        {
-        a[i][j]-=a[k][j]*koefc;  
+        A[i][j]-=A[k][j]*koefc;  
        }
        x[i]=x[i]-koefc*x[k];
       }      
@@ -24,8 +24,8 @@ void cheboksarovv::lab1()
      for(int i=N-2;i>=0;i--)
       {
        for(int j=i+1;j<N;j++){
-        summa=summa+a[i][j]*x[j];}
-        x[i]=(b[i]-summa)/a[i][i];
+        summa=summa+A[i][j]*x[j];}
+        x[i]=(b[i]-summa)/A[i][i];
         summa=0; 
       }
 }
