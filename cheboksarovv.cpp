@@ -10,7 +10,7 @@ void cheboksarovv::lab1()
      {
       for(int i=k+1;i<N;i++)
       { 
-       koefc=A[i][k]/a[k][k];
+       koefc=A[i][k]/A[k][k];
        for(int j=k;j<N;j++)
        {
         A[i][j]-=A[k][j]*koefc;  
