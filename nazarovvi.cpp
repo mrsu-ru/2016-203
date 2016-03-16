@@ -22,7 +22,7 @@ void nazarovvi::lab1()
     for(int i = 0; i<N; i++)
         x[i]=b[i];
 
-    for (int i=n-1;i>=0;i--)
+    for (int i=N-1;i>=0;i--)
     {
         for (int j=i+1;j<N;j++)
                 x[i]-=A[i][j]*x[j];
@@ -35,8 +35,55 @@ void nazarovvi::lab1()
 /**
  * Метод Гаусса с выбором главного элемента
  */
+ int nazarovvi::maxElemNum(long double* a, int c)
+    {
+        int tmp = c;
+        for (int i=c+1; i<N; i++)
+        {
+            if (abs(a[i]) > abs(a[tmp])) tmp = i;
+        }
+        return tmp;
+    }
 void nazarovvi::lab2()
 {
+    long double coef;
+    long double* column = new long double[N];
+
+    for (int k=0; k<N-1; k++)
+    {
+        for (int i=0; i<N; i++)
+            {
+                column[i] = A[i][k];
+            }
+        if (maxElemNum(column,k) != k)
+            {
+                swap(A[maxElemNum(column,k)], A[k]);
+                swap(b[maxElemNum(column,k)], b[k]);
+            }
+        for (int i=k+1; i<N; i++)
+        {
+
+            coef = A[i][k]/A[k][k];
+            for (int j=k; j<N; j++)
+                A[i][j] -= coef*A[k][j];
+            b[i] -= coef*b[k];
+        }
+
+    }
+
+    for(int i = 0; i<N; i++)
+    {
+        x[i]=b[i];
+    }
+
+    for (int i=N-1;i>=0;i--)
+    {
+        for (int j=i+1;j<N;j++)
+                x[i]-=A[i][j]*x[j];
+        x[i] /= A[i][i];
+
+    }
+
 
 }
 
