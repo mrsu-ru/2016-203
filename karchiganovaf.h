@@ -1,7 +1,7 @@
 #pragma once
 #include "lab.h"
 
-class karchiganovaf extends lab
+class karchiganovaf : public lab
 {
   /**
    * Метод Гаусса
