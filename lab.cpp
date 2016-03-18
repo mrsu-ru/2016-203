@@ -2,10 +2,20 @@
 #include <cstdlib>
 
 void lab::read_file() {}
-void lab::run(int lab_number) {}
+
+void lab::run(int lab_number)
+{
+  std::cout << get_name() << " passes lab #" << lab_number << std::endl;
+
+}
+
 void lab::write_result() {}
 void lab::check_result() {}
 
+std::string lab::get_name()
+{
+  return std::string("Unknown People");
+}
 
 /**
  *

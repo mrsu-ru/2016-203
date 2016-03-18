@@ -1,5 +1,7 @@
 #pragma once
-
+#include <cmath>
+#include <algorithm>
+#include <iostream>
 
 class lab
 {
@@ -13,6 +15,9 @@ public:
 protected:
   int N;
   double **A, *b, *x;
+
+  virtual std::string get_name();
+
 
   /**
    * Метод Гаусса
