@@ -5,25 +5,25 @@
  */
 void Levshtanoviv::lab1()
 {
-for (int k = 0; k<n; k++)
-     for (int i=k+1;i<n;i++)
+for (int k = 0; k<N; k++)
+     for (int i=k+1;i<N;i++)
      {
          float c=A[i][k]/A[k][k];
          b[i]=b[i]-(b[k]*c);
-      for (int j=0;j<n;j++)
+      for (int j=0;j<N;j++)
       {
            A[i][j]=A[i][j]-(A[k][j]*c);
 
       }
      }
 
-     for (int k = n-1; k>=0; k--)
+     for (int k = N-1; k>=0; k--)
      for (int i=k-1;i>=0;i--)
-      for (int j=n-1;j>=0;j--)
+      for (int j=N-1;j>=0;j--)
  {
          float c=A[i][k]/A[k][k];
          b[i]=b[i]-(b[k]*c);
-      for (int j=0;j<n;j++)
+      for (int j=0;j<N;j++)
       {
            A[i][j]=A[i][j]-(A[k][j]*c);
 
@@ -36,13 +36,12 @@ for (int k = 0; k<n; k++)
  * Метод Гаусса с выбором главного элемента
  */
 void Levshtanoviv::lab2()
-{
-for (int k = 0; k<n; k++)
-     for (int i=k+1;i<n;i++)
+for (int k = 0; k<N; k++)
+     for (int i=k+1;i<N;i++)
      {
          float c=A[i][k]/A[k][k];
          b[i]=b[i]-(b[k]*c);
-      for (int j=0;j<n;j++)
+      for (int j=0;j<N;j++)
       {
            A[i][j]=A[i][j]-(A[k][j]*c);
 
@@ -50,10 +49,10 @@ for (int k = 0; k<n; k++)
      }
 
 
-      for(int i=n-1; i>=0; i--)
+      for(int i=N-1; i>=0; i--)
 
       {s=0;
-          for(int j=i+1; j<=n; j++)
+          for(int j=i+1; j<=N; j++)
              s=s+A[i][j]*x[j];
          x[i]=(b[i]-s)/(A[i][i]);
       }
