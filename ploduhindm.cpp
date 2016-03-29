@@ -87,7 +87,63 @@ void ploduhindm::lab2()
  */
 void ploduhindm::lab3()
 {
+    long double** L = new long double*[N];
+    for (int i=0; i<N; i++)
+        L[i] = new long double[N];
+	long double* y = new long double[N];
+	long double s=0;
+	for (int i=0; i<N; i++)
+        for (int j=0; j<N; j++)
+            {
+                L[i][j]=0;
+            }
+	for (int i = 0; i < N; i++)
+    {
+        for (int j = 0; j < N; j++)
+        {
+            if (i==j)
+            {
+               for(int k=0; k<i; k++)
+                    s+=L[i][k]*L[i][k];
+                L[i][i]=sqrt(A[i][i]-s);
 
+                s = 0;
+            }
+            if (j<i)
+            {
+                for (int k=0; k<j; k++)
+                    s+=L[i][k]*L[j][k];
+                L[i][j] = (A[i][j]-s)/L[j][j];
+                s = 0;
+            }
+        };
+    }
+
+	for (int i = 0; i < N; i++)
+    {
+        x[i]=0;
+        y[i]=0;
+    }
+
+    y[0]=b[0]/L[0][0];
+    for (int i = 1; i < N; i++)
+    {
+        for(int j=0; j < i; j++)
+			s += L[i][j]*y[j];
+
+        y[i] = (b[i] - s)/L[i][i];
+        s = 0;
+    }
+
+	x[N-1] = y[N-1]/L[N-1][N-1];
+    for (int i=N-2;i>=0;i--)
+    {
+        for (int j=i+1;j<N;j++)
+			s += L[j][i]*x[j];
+
+        x[i] = (y[i] - s)/L[i][i];
+        s = 0;
+    }
 }
 
 
