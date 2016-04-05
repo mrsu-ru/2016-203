@@ -78,6 +78,7 @@ void ploduhindm::lab2()
                 x[i]-=A[i][j]*x[j];
         x[i]/=A[i][i];
     }
+    delete[] col;
 }
 
 
@@ -144,6 +145,10 @@ void ploduhindm::lab3()
         x[i] = (y[i] - s)/L[i][i];
         s = 0;
     }
+    delete[] y;
+    for(int i=0; i<N; i++)
+        delete[] L[i];
+    delete[] L;
 }
 
 
@@ -153,6 +158,29 @@ void ploduhindm::lab3()
  */
 void ploduhindm::lab4()
 {
+    long double* P = new long double[N];
+    long double* Q = new long double[N];
+    for (int i=0; i<N; i++)
+    {
+        P[i]=0;
+        Q[i]=0;
+    }
+
+    P[0]=A[0][1]/(-A[0][0]);
+    Q[0]=b[0]/A[0][0];
+
+    for(int i=1; i<N; i++)
+    {
+        P[i] = A[i][i+1]/(-A[i][i]-A[i][i-1]*P[i-1]);
+        Q[i] = (-b[i] + A[i][i-1]*Q[i-1])/(-A[i][i]-A[i][i-1]*P[i-1]);
+    }
+
+    x[N-1] = Q[N-1];
+    for(int i=N-2; i>=0; i--)
+        x[i] = P[i]*x[i+1]+Q[i];
+
+    delete[] P;
+    delete[] Q;
 
 }
 
