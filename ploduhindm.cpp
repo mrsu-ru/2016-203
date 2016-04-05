@@ -34,7 +34,7 @@ void ploduhindm::lab1()
 /**
  * Метод Гаусса с выбором главного элемента
  */
- int ploduhindm::maxEl(long double* a, int x)
+ int ploduhindm::maxElIndex(long double* a, int x)
     {
         int tmp = x;
         for (int i=x+1; i<N; i++)
@@ -55,10 +55,10 @@ void ploduhindm::lab2()
             {
                 col[i] = A[i][k];
             }
-             if (maxEl(col,k) != k)
+             if (maxElIndex(col,k) != k)
                 {
-                swap(A[maxEl(col,k)], A[k]);
-                swap(x[maxEl(col,k)], x[k]);
+                swap(A[maxElIndex(col,k)], A[k]);
+                swap(x[maxElIndex(col,k)], x[k]);
                 }
              for (int i = k+1; i < N; i++)
              {
