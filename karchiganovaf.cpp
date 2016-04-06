@@ -44,8 +44,8 @@ void karchiganovaf::lab2()
 			_max_=i;
 			A_max_k=abs(A[_max_][k]);
 		}
-		swap(A[_max_], A[k]);
-		swap(b[_max_], b[k]);
+		std::swap(A[_max_], A[k]);
+		std::swap(b[_max_], b[k]);
 	}
 	karchiganovaf::lab1();
 }
