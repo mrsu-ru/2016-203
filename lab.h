@@ -6,7 +6,7 @@
 class lab
 {
 public:
-  void init(int N, double **A, double *b, double *x);
+  //void init(int N, double **A, double *b, double *x);
   void read_file();
   void run(int lab_number);
   void write_result();
@@ -15,6 +15,7 @@ public:
 protected:
   int N;
   double **A, *b, *x;
+  double **A_or, *b_or;
 
   virtual std::string get_name();
 

@@ -1,7 +1,7 @@
 #pragma once
 #include "lab.h"
 
-class Samylkin extends lab
+class Samylkin : public lab
 {
   /**
    * Метод Гаусса
@@ -31,4 +31,4 @@ class Samylkin extends lab
    * Один из градиентных методов
    */
   virtual void lab7();
-}
+};

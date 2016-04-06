@@ -10,56 +10,64 @@
 #include "ploduhindm.h"
 #include "PolyaevaEV.h"
 #include "Salnikov.h"
+#include "Samylkin.h"
 #include "Sukhova.h"
+#include "timovkin.h"
 #include "Zelyunko.h"
 #include <iostream>
 
-void print_usage();
+void print_usage(char* name);
 
 
 int main(int argc, char** argv)
 {
   if (argc < 3) {
-    print_usage();
+    print_usage(argv[0]);
     return 0;
   }
 
   lab *l = NULL;
-  if (strcmp(argv[1], "cheboksarovv")) {
+  if (strcmp(argv[1], "cheboksarovv") == 0) {
     l = new cheboksarovv();
   }
-  if (strcmp(argv[1], "karchiganovaf")) {
+  else if (strcmp(argv[1], "karchiganovaf") == 0) {
     l = new karchiganovaf();
   }
-  if (strcmp(argv[1], "levshtanoviv")) {
+  else if (strcmp(argv[1], "levshtanoviv") == 0) {
     l = new Levshtanoviv();
   }
-  if (strcmp(argv[1], "lysovvo")) {
+  else if (strcmp(argv[1], "lysovvo") == 0) {
     l = new Lysov();
   }
-  if (strcmp(argv[1], "morozovns")) {
+  else if (strcmp(argv[1], "morozovns") == 0) {
     l = new morozovns();
   }
-  if (strcmp(argv[1], "nazarovvi")) {
+  else if (strcmp(argv[1], "nazarovvi") == 0) {
     l = new nazarovvi();
   }
-  if (strcmp(argv[1], "ploduhindm")) {
+  else if (strcmp(argv[1], "ploduhindm") == 0) {
     l = new ploduhindm();
   }
-  if (strcmp(argv[1], "polyaevaev")) {
+  else if (strcmp(argv[1], "polyaevaev") == 0) {
     l = new PolyaevaEV();
   }
-  if (strcmp(argv[1], "salnikovmd")) {
+  else if (strcmp(argv[1], "salnikovmd") == 0) {
     l = new Salnikov();
   }
-  if (strcmp(argv[1], "sukhovada")) {
+  else if (strcmp(argv[1], "samylkinsn") == 0) {
+    l = new Samylkin();
+  }
+  else if (strcmp(argv[1], "sukhovada") == 0) {
     l = new Sukhova();
   }
-  if (strcmp(argv[1], "zelyunkona")) {
+  else if (strcmp(argv[1], "timovkinsn") == 0) {
+    l = new timovkin();
+  }
+  else if (strcmp(argv[1], "zelyunkona") == 0) {
     l = new Zelyunko();
   }
   else {
-    print_usage();
+    print_usage(argv[0]);
     return 0;
   }
 
@@ -67,12 +75,13 @@ int main(int argc, char** argv)
   l->run(atoi(argv[2]));
   l->write_result();
   l->check_result();
+
   delete l;
   return 0;
 }
 
 
-void print_usage()
+void print_usage(char* name)
 {
-  std::cout << "Usage:\n\n  vvm fio lab_number\n";
+  std::cout << "Usage:\n\n  " << name << " <fio> <lab_number>\n";
 }

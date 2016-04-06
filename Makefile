@@ -1,6 +1,6 @@
 CC=g++
-CFLAGS=-c -Wall
-LDFLAGS=
+CFLAGS=-c -Wall -g
+LDFLAGS= -g
 SOURCES= \
         main.cpp \
 				lab.cpp \
@@ -13,7 +13,9 @@ SOURCES= \
 				ploduhindm.cpp \
 				PolyaevaEV.cpp \
 				Salnikov.cpp \
+				Samylkin.cpp \
 				Sukhova.cpp \
+				timovkin.cpp \
 				Zelyunko.cpp
 
 

@@ -1,5 +1,10 @@
 #include "karchiganovaf.h"
 
+std::string karchiganovaf::get_name()
+{
+  return std::string("Карчиганов Алексей Федорович");
+}
+
 /**
  * Метод Гаусса
  */
