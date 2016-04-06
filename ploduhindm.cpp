@@ -34,32 +34,19 @@ void ploduhindm::lab1()
 /**
  * Метод Гаусса с выбором главного элемента
  */
- int ploduhindm::maxElIndex(long double* a, int x)
-    {
-        int tmp = x;
-        for (int i=x+1; i<N; i++)
-        {
-            if (abs(a[i]) > abs(a[tmp])) tmp = i;
-        }
-        return tmp;
-    }
 void ploduhindm::lab2()
 {
     for (int i = 0; i < N; i++)
         x[i] = b[i];
      long double m;
-     long double* col = new long double[N];
+     int index;
      for (int k = 0; k < N-1; k++)
         {
-            for (int i=0; i<N; i++)
-            {
-                col[i] = A[i][k];
-            }
-             if (maxElIndex(col,k) != k)
-                {
-                swap(A[maxElIndex(col,k)], A[k]);
-                swap(x[maxElIndex(col,k)], x[k]);
-                }
+            index = k;
+            for (int i=k+1; i<N; i++)
+                if(abs(A[i][k]) > abs(A[index][k])) index = i;
+            std::swap(A[index], A[k]);
+            std::swap(b[index], b[k]);
              for (int i = k+1; i < N; i++)
              {
  				m = A[i][k] / A[k][k];
@@ -78,7 +65,6 @@ void ploduhindm::lab2()
                 x[i]-=A[i][j]*x[j];
         x[i]/=A[i][i];
     }
-    delete[] col;
 }
 
 
@@ -94,31 +80,26 @@ void ploduhindm::lab3()
 	long double* y = new long double[N];
 	long double s=0;
 	for (int i=0; i<N; i++)
-        for (int j=0; j<N; j++)
-            {
-                L[i][j]=0;
-            }
-	for (int i = 0; i < N; i++)
-    {
-        for (int j = 0; j < N; j++)
+    for (int j=0; j<N; j++)
         {
-            if (i==j)
-            {
-               for(int k=0; k<i; k++)
-                    s+=L[i][k]*L[i][k];
-                L[i][i]=sqrt(A[i][i]-s);
+                L[i][j]=0;
+        }
+	for (int i = 0; i < N; i++)
+        {
+            for(int k=0; k<i; k++)
+                s+=L[i][k]*L[i][k];
 
-                s = 0;
-            }
-            if (j<i)
+            L[i][i]=sqrt(A[i][i]-s);
+            s = 0;
+
+        for (int j = i+1; j < N; j++)
             {
-                for (int k=0; k<j; k++)
-                    s+=L[i][k]*L[j][k];
-                L[i][j] = (A[i][j]-s)/L[j][j];
+                for (int k=0; k<j-1; k++)
+                    s+=L[j][k]*L[i][k];
+                L[j][i] = (A[j][i]-s)/L[i][i];
                 s = 0;
-            }
-        };
-    }
+            };
+        }
 
 	for (int i = 0; i < N; i++)
     {
