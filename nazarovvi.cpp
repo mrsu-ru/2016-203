@@ -35,31 +35,19 @@ void nazarovvi::lab1()
 /**
  * ����� ������ � ������� �������� ��������
  */
- int nazarovvi::maxElemNum(long double* a, int c)
-    {
-        int tmp = c;
-        for (int i=c+1; i<N; i++)
-        {
-            if (fabs(a[i]) > fabs(a[tmp])) tmp = i;
-        }
-        return tmp;
-    }
 void nazarovvi::lab2()
 {
     long double coef;
-    long double* column = new long double[N];
+	int maxn;
 
     for (int k=0; k<N-1; k++)
     {
-        for (int i=0; i<N; i++)
-            {
-                column[i] = A[i][k];
-            }
-        if (maxElemNum(column,k) != k)
-            {
-                std::swap(A[maxElemNum(column,k)], A[k]);
-                std::swap(b[maxElemNum(column,k)], b[k]);
-            }
+        maxn = k;
+        for (int i=k+1; i<N; i++)
+			if(abs(A[i][k]) > abs(A[maxn][k])) maxn = i;
+        std::swap(A[maxn], A[k]);
+        std::swap(b[maxn], b[k]);
+
         for (int i=k+1; i<N; i++)
         {
 
@@ -68,8 +56,8 @@ void nazarovvi::lab2()
                 A[i][j] -= coef*A[k][j];
             b[i] -= coef*b[k];
         }
-
     }
+
 
     for(int i = 0; i<N; i++)
     {
@@ -81,10 +69,7 @@ void nazarovvi::lab2()
         for (int j=i+1;j<N;j++)
                 x[i]-=A[i][j]*x[j];
         x[i] /= A[i][i];
-
     }
-
-
 }
 
 
@@ -94,7 +79,64 @@ void nazarovvi::lab2()
  */
 void nazarovvi::lab3()
 {
+	long double** L = new long double*[N];
+    for (int i=0; i<N; i++)
+        L[i] = new long double[N];
+	long double* y = new long double[N];
+	long double s=0;
+	//�������� ������� �
+	for (int i=0; i<N; i++)
+        for (int j=0; j<N; j++)
+            {
+                L[i][j]=0;
+            }
+	//������� ���������������� ������� �
+	for (int k = 0; k < N; k++)
+    {
+        for(int i=0; i<k; i++)
+            s+=L[k][i]*L[k][i];
 
+        L[k][k]=sqrt(A[k][k]-s);
+        s = 0;
+
+        for(int i=k+1; i < N; i++)
+        {
+            for (int j=0; j<i-1; j++)
+                s+=L[i][j]*L[k][j];
+
+            L[i][k] = (A[i][k]-s)/L[k][k];
+            s = 0;
+        };
+    }
+
+
+	for (int i = 0; i < N; i++)
+    {
+        x[i]=0;
+        y[i]=0;
+    }
+
+	//������ ������ �������
+    y[0]=b[0]/L[0][0];
+    for (int i = 1; i < N; i++)
+    {
+        for(int k=0; k < i; k++)
+			s += L[i][k]*y[k];
+
+        y[i] = (b[i] - s)/L[i][i];
+        s = 0;
+    }
+    //������ ������ �������
+	x[N-1] = y[N-1]/L[N-1][N-1];
+    for (int i=N-2;i>=0;i--)
+    {
+        for (int k=i+1;k<N;k++)
+			s += L[k][i]*x[k];
+
+        x[i] = (y[i] - s)/L[i][i];
+        s = 0;
+    }
+    delete[] y;
 }
 
 
@@ -104,7 +146,27 @@ void nazarovvi::lab3()
  */
 void nazarovvi::lab4()
 {
+	long double* P = new long double[N];
+    long double* Q = new long double[N];
+    for (int i=0; i<N; i++)
+    {
+        P[i]=0;
+        Q[i]=0;
+    }
 
+    P[0] = -A[0][1]/A[0][0];
+    Q[0] = b[0]/A[0][0];
+
+    for(int i=1; i<N; i++)
+    {
+        P[i] = A[i][i+1]/(-A[i][i-1]*P[i-1]-A[i][i]);
+        Q[i] = (-b[i] + A[i][i-1]*Q[i-1])/(-A[i][i-1]*P[i-1]-A[i][i]);
+    }
+    x[N-1] = Q[N-1];
+    for(int i=N-2; i>=0; i--)
+        x[i] = P[i]*x[i+1]+Q[i];
+    delete[] P;
+    delete[] Q;
 }
 
 
@@ -114,6 +176,29 @@ void nazarovvi::lab4()
  */
 void nazarovvi::lab5()
 {
+    long double eps = 0.0001;
+    long double* y = new double[N];
+	long double norm;
+    do {
+		for (int i = 0; i < N; i++)
+        {
+			y[i] = b[i];
+			for (int j = 0; j < N; j++)
+			{
+				if (i != j)
+					y[i] -= A[i][j] * x[j];
+			}
+			y[i] /= A[i][i];
+		}
+        norm = abs(x[0] - y[0]);
+		for (int h = 0; h < N; h++)
+        {
+			if (abs(x[h] - y[h]) > norm)
+				norm = abs(x[h] - y[h]);
+			X[h] = y[h];
+		}
+	} while (norm > eps);
+	delete[] y;
 
 }
 
