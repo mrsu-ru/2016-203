@@ -1,5 +1,7 @@
 #pragma once
 #include "lab.h"
+#include <cmath>
+#include <algorithm>
 
 class Salnikov: public lab
 {
@@ -10,8 +12,8 @@ class Salnikov: public lab
 	/**
 	* Метод Гаусса с выбором главного элемента
 	*/
-	int maxElemNum(double* a, int c);
 	virtual void lab2();
+	int maxElemNum(double* a, int c);
 	/**
 	* Метод квадратного корня (метод Холецкого)
 	*/
