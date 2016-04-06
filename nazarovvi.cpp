@@ -177,7 +177,7 @@ void nazarovvi::lab4()
 void nazarovvi::lab5()
 {
     long double eps = 0.0001;
-    long double* y = new double[N];
+    long double* y = new long double[N];
 	long double norm;
     do {
 		for (int i = 0; i < N; i++)
@@ -195,7 +195,7 @@ void nazarovvi::lab5()
         {
 			if (abs(x[h] - y[h]) > norm)
 				norm = abs(x[h] - y[h]);
-			X[h] = y[h];
+			x[h] = y[h];
 		}
 	} while (norm > eps);
 	delete[] y;
