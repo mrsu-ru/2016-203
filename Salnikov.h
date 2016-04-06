@@ -10,6 +10,7 @@ class Salnikov: public lab
 	/**
 	* Метод Гаусса с выбором главного элемента
 	*/
+	int maxElemNum(double* a, int c);
 	virtual void lab2();
 	/**
 	* Метод квадратного корня (метод Холецкого)
