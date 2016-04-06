@@ -6,13 +6,13 @@
 */
 void Salnikov::lab1()
 {
-	long double y;
+	long double tmp;
 	for (int k = 0; k < N; k++) {
-		for(int i = k+1;i < N; i++) {
-			y = A[i][k]/A[k][k];
-			b[i] -= b[k]*y;
+		for(int i = k+1; i < N; i++) {
+			tmp = A[i][k]/A[k][k]; //  коэфицент умножения
+			b[i] -= b[k]*tmp; 
 			for(int j = 0 ; j < N; j++) {
-				A[i][j] -= A[k][j]*y;
+				A[i][j] -= A[k][j]*tmp; //Приводим к вер. треугольной
 			}
 		}
 	}
@@ -21,9 +21,10 @@ void Salnikov::lab1()
 
 		x[i] = b[i]/A[i][i];
 		for(int j = i+1; j < N; j++) {
-			x[i] += -A[i][j]*x[j]/A[i][i];
+			x[i] += -A[i][j]*x[j]/A[i][i]; 
 		}
 	}
+
 
 }
 
