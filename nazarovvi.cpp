@@ -54,8 +54,7 @@ void nazarovvi::lab2()
             coef = A[i][k]/A[k][k];
             for (int j=k; j<N; j++)
                 A[i][j] -= coef*A[k][j];
-            b[i] = b[i] - coef*b[k];
-
+            b[i] -= coef*b[k];
         }
     }
 
@@ -110,14 +109,14 @@ void nazarovvi::lab3()
         };
     }
 
-	//решаем первую систему
+
 	for (int i = 0; i < N; i++)
     {
         x[i]=0;
         y[i]=0;
     }
 
-	//решаем вторую систему
+	//решаем первую систему
     y[0]=b[0]/L[0][0];
     for (int i = 1; i < N; i++)
     {
@@ -127,7 +126,7 @@ void nazarovvi::lab3()
         y[i] = (b[i] - s)/L[i][i];
         s = 0;
     }
-
+    //решаем вторую систему
 	x[N-1] = y[N-1]/L[N-1][N-1];
     for (int i=N-2;i>=0;i--)
     {
@@ -154,7 +153,7 @@ void nazarovvi::lab4()
         P[i]=0;
         Q[i]=0;
     }
-	
+
     P[0] = -A[0][1]/A[0][0];
     Q[0] = b[0]/A[0][0];
 
