@@ -1,7 +1,7 @@
 #include "nazarovvi.h"
 
 /**
- * Метод Гаусса
+ * пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
  */
 void nazarovvi::lab1()
 {
@@ -33,14 +33,14 @@ void nazarovvi::lab1()
 
 
 /**
- * Метод Гаусса с выбором главного элемента
+ * пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
  */
  int nazarovvi::maxElemNum(long double* a, int c)
     {
         int tmp = c;
         for (int i=c+1; i<N; i++)
         {
-            if (abs(a[i]) > abs(a[tmp])) tmp = i;
+            if (fabs(a[i]) > fabs(a[tmp])) tmp = i;
         }
         return tmp;
     }
@@ -57,8 +57,8 @@ void nazarovvi::lab2()
             }
         if (maxElemNum(column,k) != k)
             {
-                swap(A[maxElemNum(column,k)], A[k]);
-                swap(b[maxElemNum(column,k)], b[k]);
+                std::swap(A[maxElemNum(column,k)], A[k]);
+                std::swap(b[maxElemNum(column,k)], b[k]);
             }
         for (int i=k+1; i<N; i++)
         {
@@ -90,7 +90,7 @@ void nazarovvi::lab2()
 
 
 /**
- * Метод квадратного корня (метод Холецкого)
+ * пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ)
  */
 void nazarovvi::lab3()
 {
@@ -100,7 +100,7 @@ void nazarovvi::lab3()
 
 
 /**
- * Метод прогонки
+ * пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
  */
 void nazarovvi::lab4()
 {
@@ -110,7 +110,7 @@ void nazarovvi::lab4()
 
 
 /**
- * Метод Якоби
+ * пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
  */
 void nazarovvi::lab5()
 {
@@ -120,7 +120,7 @@ void nazarovvi::lab5()
 
 
 /**
- * Метод Зейделя
+ * пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
  */
 void nazarovvi::lab6()
 {
@@ -130,7 +130,7 @@ void nazarovvi::lab6()
 
 
 /**
- * Один из градиентных методов
+ * пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
  */
 void nazarovvi::lab7()
 {

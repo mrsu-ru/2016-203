@@ -1,11 +1,22 @@
 CC=g++
-CFLAGS=-c -Wall
-LDFLAGS=
+CFLAGS=-c -Wall -g
+LDFLAGS= -g
 SOURCES= \
         main.cpp \
 				lab.cpp \
-				ivanovii.cpp \
-				Lysov.cpp
+				cheboksarovv.cpp \
+				karchiganovaf.cpp \
+				Levshtanoviv.cpp \
+				Lysov.cpp \
+				morozovns.cpp \
+				nazarovvi.cpp \
+				ploduhindm.cpp \
+				PolyaevaEV.cpp \
+				Salnikov.cpp \
+				Samylkin.cpp \
+				Sukhova.cpp \
+				timovkin.cpp \
+				Zelyunko.cpp
 
 
 OBJECTS=$(SOURCES:.cpp=.o)

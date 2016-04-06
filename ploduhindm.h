@@ -31,4 +31,6 @@ class ploduhindm : public lab
    * Один из градиентных методов
    */
   virtual void lab7();
+
+  int maxEl(long double* a, int x);
 };

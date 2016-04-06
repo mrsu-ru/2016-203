@@ -57,8 +57,8 @@ void ploduhindm::lab2()
             }
              if (maxEl(col,k) != k)
                 {
-                swap(A[maxEl(col,k)], A[k]);
-                swap(b[maxEl(col,k)], b[k]);
+                std::swap(A[maxEl(col,k)], A[k]);
+                std::swap(b[maxEl(col,k)], b[k]);
                 }
              for (int i = k+1; i < N; i++)
              {

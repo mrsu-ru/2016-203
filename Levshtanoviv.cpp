@@ -36,6 +36,8 @@ for (int k = 0; k<N; k++)
  * Метод Гаусса с выбором главного элемента
  */
 void Levshtanoviv::lab2()
+{
+  double s;
 for (int k = 0; k<N; k++)
      for (int i=k+1;i<N;i++)
      {

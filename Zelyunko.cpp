@@ -1,4 +1,4 @@
-#include "zelyunko.h"
+#include "Zelyunko.h"
 
 /**
  * Метод Гаусса
@@ -14,7 +14,7 @@ for(int i=0;i<N;i++)
 
         for(int l=N-1;l>=i;l--)
         {
-            A[k][l]=double(double(-A[i][i]/a[k][i])*A[k][l]+A[i][l]);
+            A[k][l]=double(double(-A[i][i]/A[k][i])*A[k][l]+A[i][l]);
         }
     }
 }
@@ -40,7 +40,7 @@ double z=0; //z- используется для нахожения i-ого н�
 /**
  * Метод Гаусса с выбором главного элемента
  */
-void ivanovii::lab2()
+void Zelyunko ::lab2()
 {
 
 }
@@ -50,7 +50,7 @@ void ivanovii::lab2()
 /**
  * Метод квадратного корня (метод Холецкого)
  */
-void ivanovii::lab3()
+void Zelyunko ::lab3()
 {
 
 }
@@ -60,7 +60,7 @@ void ivanovii::lab3()
 /**
  * Метод прогонки
  */
-void ivanovii::lab4()
+void Zelyunko::lab4()
 {
 
 }
@@ -70,7 +70,7 @@ void ivanovii::lab4()
 /**
  * Метод Якоби
  */
-void ivanovii::lab5()
+void Zelyunko::lab5()
 {
 
 }
@@ -80,7 +80,7 @@ void ivanovii::lab5()
 /**
  * Метод Зейделя
  */
-void ivanovii::lab6()
+void Zelyunko::lab6()
 {
 
 }
@@ -90,7 +90,7 @@ void ivanovii::lab6()
 /**
  * Один из градиентных методов
  */
-void ivanovii::lab7()
+void Zelyunko::lab7()
 {
 
 }

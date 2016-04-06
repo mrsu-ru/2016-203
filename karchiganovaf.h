@@ -31,4 +31,8 @@ class karchiganovaf : public lab
    * Один из градиентных методов
    */
   virtual void lab7();
-}
+  
+
+    virtual std::string get_name();
+
+};
