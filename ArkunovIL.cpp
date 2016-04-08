@@ -14,7 +14,7 @@ void ArkunovIL::lab1()
  float s;
 
      for (int j=0;j<N;j++)
-      A[j][n]=b[j];
+      A[j][N]=b[j];
 
 
   for (int i = 0; i<N; i++)
@@ -46,7 +46,7 @@ void ArkunovIL::lab2()
  float s;
 
      for (int j=0;j<N;j++)
-      A[j][n]=b[j];
+      A[j][N]=b[j];
 
 
 int maxi = 0;
