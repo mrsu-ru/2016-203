@@ -33,6 +33,9 @@ int main(int argc, char** argv)
   else if (strcmp(argv[1], "karchiganovaf") == 0) {
     l = new karchiganovaf();
   }
+  else if (strcmp(argv[1], "labushkinamn") == 0) {
+    l = new Levshtanoviv();
+  }
   else if (strcmp(argv[1], "levshtanoviv") == 0) {
     l = new Levshtanoviv();
   }

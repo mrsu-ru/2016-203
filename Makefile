@@ -6,6 +6,7 @@ SOURCES= \
 				lab.cpp \
 				cheboksarovv.cpp \
 				karchiganovaf.cpp \
+				labushkinamn.cpp \
 				Levshtanoviv.cpp \
 				Lysov.cpp \
 				morozovns.cpp \
