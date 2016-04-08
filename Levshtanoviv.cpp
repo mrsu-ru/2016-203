@@ -1,5 +1,11 @@
 #include "Levshtanoviv.h"
 
+std::string Levshtanoviv::get_name()
+{
+  return std::string("Levshtanoviv");
+}
+
+
 /**
  * Метод Гаусса
  */
@@ -29,8 +35,8 @@ for (int k = 0; k<N; k++)
 
       }
      }
-      for(int i=0; i<n; i++)
-      for(int j=0; j<n; j++)
+      for(int i=0; i<N; i++)
+      for(int j=0; j<N; j++)
         if (i==j) x[i]=b[i]/A[i][j];
 }
 
@@ -42,7 +48,7 @@ void Levshtanoviv::lab2()
 {
   float s,c,ma,l,l1;
  int p;
- ma=abs(A[0][0]);d=0;
+ ma=abs(A[0][0]);int d=0;
  for(int i=1; i<N;i++)
    if (abs(A[i][0])>ma)
       { ma=abs(A[i][0]); d=i;};
