@@ -5,6 +5,7 @@
  */
 void timovkin::lab1()
 {
+<<<<<<< HEAD
 double p;
 for (int i = 0; i<N; i++)
 for (int k=i+1;k<N;k++)
@@ -24,6 +25,28 @@ A[k][j]=A[k][j]-A[i][j]*p;
 }
 for (int j = 0; j<N; j++)
 x[j]=b[j]/A[j][j];
+=======
+for (int i = 0; i<N; i++)
+ for (int k=i+1;k<N;k++)
+ {
+   c=A[k][i]/A[i][i];
+   b[k]=b[k]-b[i]*c;
+   for (int j=0;j<N;j++)
+     A[k][j]=A[k][j]-A[i][j]*c;
+ }
+
+ for (int i = N-1; i>=0; i--)
+ for (int k=i-1;k>=0;k--)
+ {
+     c=A[k][i]/A[i][i];
+   b[k]=b[k]-b[i]*c;
+   for (int j=N-1;j>=0;j--)
+     A[k][j]=A[k][j]-A[i][j]*c;
+
+}
+    for (int j=0; j<N; j++)
+    {    x[j]=b[j]/A[j][j];}
+>>>>>>> 30bd60ad65001884630ac0fcc3a240bc762f7fae
 }
 
 
@@ -32,6 +55,7 @@ x[j]=b[j]/A[j][j];
  */
 void timovkin::lab2()
 {
+<<<<<<< HEAD
     for (int i = 0; i < N; i++)
         x[i] = b[i];
     double m,temp;
@@ -109,6 +133,33 @@ for(int i=0; i<N; i++){
 		}
 		x[i]=(y[i]-s)/l[i][i];
 	}
+=======
+  for (int i = 0; i<N; i++)
+ for (int k=i+1;k<N;k++)
+ {
+   c=A[k][i]/A[i][i];
+   b[k]=b[k]-b[i]*c;
+   for (int j=0;j<N;j++)
+     A[k][j]=A[k][j]-A[i][j]*c;
+ }
+ for(int i=N;i>=0;i--)
+     {
+      s=0;
+      for(int j=i+1;j<N;j++)
+        s=s+A[i][j]*x[j];
+      x[i]=(b[i]-s)/A[i][i];
+    }
+
+}
+
+
+
+/**
+ * Метод квадратного корня (метод Холецкого)
+ */
+void ivanovii::lab3()
+{
+>>>>>>> 30bd60ad65001884630ac0fcc3a240bc762f7fae
 
 }
 
@@ -117,7 +168,11 @@ for(int i=0; i<N; i++){
 /**
  * Метод прогонки
  */
+<<<<<<< HEAD
 void ivanov::lab4()
+=======
+void ivanovii::lab4()
+>>>>>>> 30bd60ad65001884630ac0fcc3a240bc762f7fae
 {
 
 }
@@ -127,7 +182,11 @@ void ivanov::lab4()
 /**
  * Метод Якоби
  */
+<<<<<<< HEAD
 void ivanov::lab5()
+=======
+void ivanovii::lab5()
+>>>>>>> 30bd60ad65001884630ac0fcc3a240bc762f7fae
 {
 
 }
@@ -137,7 +196,11 @@ void ivanov::lab5()
 /**
  * Метод Зейделя
  */
+<<<<<<< HEAD
 void ivanov::lab6()
+=======
+void ivanovii::lab6()
+>>>>>>> 30bd60ad65001884630ac0fcc3a240bc762f7fae
 {
 
 }
@@ -147,7 +210,11 @@ void ivanov::lab6()
 /**
  * Один из градиентных методов
  */
+<<<<<<< HEAD
 void ivanov::lab7()
+=======
+void ivanovii::lab7()
+>>>>>>> 30bd60ad65001884630ac0fcc3a240bc762f7fae
 {
 
 }
