@@ -2,11 +2,14 @@
 #include <cstring>
 #include "lab.h"
 #include "cheboksarovv.h"
+#include "Chucmarevaki.h"
 #include "karchiganovaf.h"
+#include "labushkinamn.h"
 #include "Levshtanoviv.h"
 #include "Lysov.h"
 #include "morozovns.h"
 #include "nazarovvi.h"
+#include "novikovdv.h"
 #include "ploduhindm.h"
 #include "PolyaevaEV.h"
 #include "Salnikov.h"
@@ -30,11 +33,14 @@ int main(int argc, char** argv)
   if (strcmp(argv[1], "cheboksarovv") == 0) {
     l = new cheboksarovv();
   }
+  else if (strcmp(argv[1], "chucmarevaki") == 0) {
+    l = new Chucmarevaki();
+  }
   else if (strcmp(argv[1], "karchiganovaf") == 0) {
     l = new karchiganovaf();
   }
   else if (strcmp(argv[1], "labushkinamn") == 0) {
-    l = new Levshtanoviv();
+    l = new labushkinamn();
   }
   else if (strcmp(argv[1], "levshtanoviv") == 0) {
     l = new Levshtanoviv();
@@ -49,7 +55,7 @@ int main(int argc, char** argv)
     l = new nazarovvi();
   }
   else if (strcmp(argv[1], "novikovdv") == 0) {
-    l = new nazarovvi();
+    l = new novikovdv();
   }
   else if (strcmp(argv[1], "ploduhindm") == 0) {
     l = new ploduhindm();

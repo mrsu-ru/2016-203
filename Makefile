@@ -5,6 +5,7 @@ SOURCES= \
         main.cpp \
 				lab.cpp \
 				cheboksarovv.cpp \
+				Chucmarevaki.cpp \
 				karchiganovaf.cpp \
 				labushkinamn.cpp \
 				Levshtanoviv.cpp \
