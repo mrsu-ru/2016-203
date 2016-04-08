@@ -2,6 +2,7 @@
 #include<fstream>
 #include<iostream>
 #include<iomanip>
+#include<cmath>
 
 /**
  * Метод Гаусса
