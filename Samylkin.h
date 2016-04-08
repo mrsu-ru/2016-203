@@ -1,7 +1,7 @@
 #pragma once
 #include "lab.h"
 
-class ploduhindm : public lab
+class Samylkin : public lab
 {
   /**
    * Метод Гаусса
@@ -31,6 +31,4 @@ class ploduhindm : public lab
    * Один из градиентных методов
    */
   virtual void lab7();
-
-  int maxEl(long double* a, int x);
 };

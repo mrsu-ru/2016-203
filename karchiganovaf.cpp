@@ -1,5 +1,10 @@
 #include "karchiganovaf.h"
 
+std::string karchiganovaf::get_name()
+{
+  return std::string("Карчиганов Алексей Федорович");
+}
+
 /**
  * Метод Гаусса
  */
@@ -10,7 +15,7 @@ void karchiganovaf::lab1()
 	{
 		for (int i=k; i<N; i++)
 		{
-			koef=A[i][k-1]/a[k-1][k-1];
+			koef=A[i][k-1]/A[k-1][k-1];
 			for (int j=k; j<N; j++) A[i][j]-=koef*A[k-1][j];
 			b[i]-=koef*b[k-1];
 		}
@@ -28,7 +33,21 @@ void karchiganovaf::lab1()
  */
 void karchiganovaf::lab2()
 {
-
+	double A_max_k=0;
+	int _max_=0;
+	for (int k=0; k<(N-1); k++)
+	{
+		_max_=k;
+		A_max_k=abs(A[_max_][k]);
+		for (int i=k+1; i<N; i++) if (A_max_k<abs(A[i][k]))
+		{
+			_max_=i;
+			A_max_k=abs(A[_max_][k]);
+		}
+		std::swap(A[_max_], A[k]);
+		std::swap(b[_max_], b[k]);
+	}
+	karchiganovaf::lab1();
 }
 
 

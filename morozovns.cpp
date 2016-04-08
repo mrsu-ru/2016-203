@@ -38,7 +38,7 @@ void morozovns::lab2()
             double maaa=A[k][k]; int pm=k; double r;
             for (int j=k+1; j<N; j++)
             {
-                if (abs(A[j][k])>abs(maaa)) {
+                if (fabs(A[j][k])>fabs(maaa)) {
                     pm=j;
                     maaa=A[j][k];
                 }

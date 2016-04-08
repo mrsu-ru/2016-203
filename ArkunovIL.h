@@ -1,7 +1,7 @@
 #pragma once
 #include "lab.h"
 
-class nazarovvi : public lab
+class ArkunovIL : public lab
 {
   /**
    * ����� ������
@@ -31,6 +31,4 @@ class nazarovvi : public lab
    * ���� �� ����������� �������
    */
   virtual void lab7();
-
-  int maxElemNum(long double* a, int c);
 };
