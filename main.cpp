@@ -1,6 +1,7 @@
 #include <cstdlib>
 #include <cstring>
 #include "lab.h"
+#include "ArkunovIL.h"
 #include "cheboksarovv.h"
 #include "Chucmarevaki.h"
 #include "karchiganovaf.h"
@@ -30,7 +31,10 @@ int main(int argc, char** argv)
   }
 
   lab *l = NULL;
-  if (strcmp(argv[1], "cheboksarovv") == 0) {
+  if (strcmp(argv[1], "arkunovil") == 0) {
+    l = new ArkunovIL();
+  }
+  else if (strcmp(argv[1], "cheboksarovv") == 0) {
     l = new cheboksarovv();
   }
   else if (strcmp(argv[1], "chucmarevaki") == 0) {
