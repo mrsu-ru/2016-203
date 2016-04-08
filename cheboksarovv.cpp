@@ -35,7 +35,7 @@ void cheboksarovv::lab2()
    for(int j=0;j<N;j++)
     {
      for(int i=j;i<N;i++){if (abs(A[i][j])>max) {max=abs(A[i][j]);index=i;}}
-     for(int g=0;g<N;g++) {m=A[j][g];a[j][g]=A[index][g];A[index][g]=m;m=b[j]; b[j]=b[index];b[index]=m;}
+     for(int g=0;g<N;g++) {m=A[j][g];A[j][g]=A[index][g];A[index][g]=m;m=b[j]; b[j]=b[index];b[index]=m;}
      max=0;
     }
 
