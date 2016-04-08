@@ -48,8 +48,8 @@ void novikovdv::lab2()
                         }
                 }
              for (int j=0; j<N; j++)
-                swap(A[k][j], A[max_id][j]);
-                swap(b[k], b[max_id]);
+                std::swap(A[k][j], A[max_id][j]);
+                std::swap(b[k], b[max_id]);
 
 
         for(int i=k+1; i<N; i++)

@@ -10,6 +10,7 @@ SOURCES= \
 				Lysov.cpp \
 				morozovns.cpp \
 				nazarovvi.cpp \
+				novikovdv.cpp	\
 				ploduhindm.cpp \
 				PolyaevaEV.cpp \
 				Salnikov.cpp \

@@ -45,6 +45,9 @@ int main(int argc, char** argv)
   else if (strcmp(argv[1], "nazarovvi") == 0) {
     l = new nazarovvi();
   }
+  else if (strcmp(argv[1], "novikovdv") == 0) {
+    l = new nazarovvi();
+  }
   else if (strcmp(argv[1], "ploduhindm") == 0) {
     l = new ploduhindm();
   }
