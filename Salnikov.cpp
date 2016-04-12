@@ -28,52 +28,47 @@ void Salnikov::lab1()
 
 }
 
-int Salnikov::maxElemNum(double* a, int c)
-{
-	int tmp = c;
-	for (int i=c+1; i<N; i++) {
-		if (abs(a[i]) > abs(a[tmp])) 
-			tmp = i;
-	}
-	return tmp;
-}
 void Salnikov::lab2()
 {
-	double factor;
-	double* column = new double[N];
+	    for (int k = 0; k < N; ++k) {
+        int string_id_of_max_el = -1;
+        double max_el = 0;
 
-	for (int k=0; k < N-1; k++) {
-		for (int i=0; i<N; i++) 
-			column[i] = A[i][k]; // выделяем колонку именно сдесь, на случай многократного использования
-		
-		int tmp_max_el_num = maxElemNum(column, k); //находим индекс максимального элемента в столбце
-		
-		if (tmp_max_el_num != k) {
-			std::swap(A[tmp_max_el_num], A[k]);
-			std::swap(x[tmp_max_el_num], x[k]);
-			std::swap(b[tmp_max_el_num], b[k]);
-		}
-		
-		for (int i = k+1; i < N; i++) {
-			factor = A[i][k]/A[k][k];
-			
-			for (int j=k; j<N; j++)
-				A[i][j] -= factor*A[k][j];
-			
-			b[i] -= factor*b[k];
-		}
-	}
+        // Find id of string of max element
+        for (int p = 0; p < N; ++p) {
+            if (std::abs(A[k][p]) >= max_el) {
+                max_el = std::abs(A[k][p]);
+                string_id_of_max_el = p;
+            }
+        }
 
-	for(int i = 0; i<N; i++) 
-		x[i]=b[i];
+        //
+        if (string_id_of_max_el != -1) {
+            for (int j = 0; j < N; ++j) {
+                std::swap(A[j][string_id_of_max_el], A[j][k]);
+            }
+            std::swap(b[string_id_of_max_el], b[k]);
 
-	for (int i=N-1;i>=0;i--) {
-		
-		for (int j=i+1;j<N;j++)
-			x[i]-=A[i][j]*x[j];
+            for (int i = k+1; i < N; ++i)
+            {
 
-		x[i] /= A[i][i];
-	}
+                double koef = A[i][k]/(A[k][k]*1.0);
+                for (int j = k; j < N; ++j)
+                    A[i][j] -= koef*A[k][j];
+                b[i] -= koef*b[k];
+            }
+
+        }
+
+    }
+
+
+    x[N - 1] = b[N - 1];
+    for (int i = N - 2; i >= 0; i--) {
+        x[i] = b[i];
+        for (int j = i + 1; j < N; ++j)
+            x[i] -= x[j] * A[i][j];
+    }
 }
 
 
