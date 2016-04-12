@@ -99,7 +99,20 @@ void cheboksarovv::lab3()
 
 void cheboksarovv::lab4()
 {
-
+  double* a2=new double[N];
+ double* b2=new double[N];
+    a2[0]=-A[0][1]/A[0][0];
+    b2[0]=b[0]/A[0][0]; 
+   for(int i=1;i<N;i++)
+    {
+     a2[i]=-A[i][i+1]/(A[i][i-1]*a2[i-1]+A[i][i]);
+     b2[i]=(b[i]-A[i][i-1]*b2[i-1])/(A[i][i-1]*a2[i-1]+A[i][i]);        
+    }
+    x[N-1] = b2[N-1];
+    for(int i=N-2; i>=0; i--)
+     x[i] = a2[i]*x[i+1]+b2[i];
+      delete[] a2;
+      delete[] b2;
 }
 
 void cheboksarovv::lab5()
