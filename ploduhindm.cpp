@@ -172,7 +172,28 @@ void ploduhindm::lab4()
  */
 void ploduhindm::lab5()
 {
-
+    long double eps = 0.0001;
+    long double* p = new long double[N];
+	long double norm;
+    for (int i = 0; i < N; i++)
+        x[i]=0;
+    do {
+		for (int i = 0; i < N; i++)
+        {
+			p[i] = b[i];
+			for (int j = 0; j < N; j++)
+				if (i != j) p[i] -= A[i][j] * x[j];
+			p[i] /= A[i][i];
+		}
+        norm = fabs(x[0] - p[0]);
+		for (int h = 0; h < N; h++)
+        {
+			if (fabs(x[h] - p[h]) > norm)
+				norm = fabs(x[h] - p[h]);
+			x[h] = p[h];
+		}
+	} while (norm > eps);
+	delete[] p;
 }
 
 
@@ -182,7 +203,30 @@ void ploduhindm::lab5()
  */
 void ploduhindm::lab6()
 {
+    long double eps = 0.0001;
+    long double *p = new long double [N];
+    bool conv;
+    for (int i = 0; i < N; i++)
+        x[i]=0;
+    do
+    {
+        for(int i = 0; i < N; i++)
+        {
+            double var = 0;
+            for(int j = 0; j < N; j++)
+                if(j != i) var += (A[i][j]*x[j]);
+            p[i] = x[i];
+            x[i]=(b[i] - var)/A[i][i];
+        }
+        conv=true;
+        for (int i = 0; i < N; i++)
+            if (fabs(x[i]-p[i])>=eps){
+                conv=false;
+                break;
+            }
 
+    } while (conv==false);
+    delete[] p;
 }
 
 
