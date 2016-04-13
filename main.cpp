@@ -4,6 +4,7 @@
 #include "ArkunovIL.h"
 #include "cheboksarovv.h"
 #include "Chucmarevaki.h"
+#include "godyaev.h"
 #include "karchiganovaf.h"
 #include "labushkinamn.h"
 #include "Levshtanoviv.h"
@@ -39,6 +40,9 @@ int main(int argc, char** argv)
   }
   else if (strcmp(argv[1], "chucmarevaki") == 0) {
     l = new Chucmarevaki();
+  }
+  else if (strcmp(argv[1], "godyaevav") == 0) {
+    l = new godyaev();
   }
   else if (strcmp(argv[1], "karchiganovaf") == 0) {
     l = new karchiganovaf();
