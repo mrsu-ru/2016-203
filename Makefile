@@ -7,6 +7,7 @@ SOURCES= \
 				ArkunovIL.cpp \
 				cheboksarovv.cpp \
 				Chucmarevaki.cpp \
+				godyaev.cpp \
 				karchiganovaf.cpp \
 				labushkinamn.cpp \
 				Levshtanoviv.cpp \

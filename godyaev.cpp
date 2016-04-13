@@ -1,3 +1,4 @@
+﻿
 #include "godyaev.h"
 
 /**
@@ -27,7 +28,8 @@ double z=0; //z- используется для нахожения i-ого н�
     }
 
 
-  X[i]=double((b[i]-z)/A[i][i]);
+  x[i]=double((b[i]-z)/A[i][i]);
+
 }
 }
 
@@ -37,6 +39,39 @@ double z=0; //z- используется для нахожения i-ого н�
  */
 void godyaev::lab2()
 {
+
+double h;
+	for (int k = 0; k<N - 1; k++)
+		for (int i = k + 1; i<N; i++){
+			double f1 = A[k][k];
+			int flag = k;
+			for (int j = k + 1; j<N; j++)
+			{
+				if (abs(A[j][k])>abs(f1)) {
+					flag = j;
+					f1 = A[j][k];
+				}
+			}
+			for (int j = k; j<N; j++){
+				std::swap(A[flag][j], A[k][j]);
+			}
+			std::swap(b[flag], b[k]);
+			h = A[i][k] / A[k][k];
+			b[i] = b[i] - h*b[k];
+			for (int j = k; j<N; j++)
+			{
+				A[i][j] = A[i][j] - h*A[k][j];
+			}
+		}
+	for (int i = N - 1; i >= 0; i--)
+	{
+		x[i] = b[i];
+		for (int j = i + 1; j<N; j++)
+		{
+			x[i] = x[i] - A[i][j] * x[j];
+		}
+		x[i] = x[i]/A[i][i];
+	}
 
 }
 
