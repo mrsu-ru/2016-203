@@ -1,5 +1,7 @@
 #pragma once
 #include "lab.h"
+#include <cmath>
+#include <algorithm>
 
 class Salnikov: public lab
 {
