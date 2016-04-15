@@ -36,7 +36,50 @@ for (k=0;k<N;k++)
  * Метод Гаусса с выбором главного элемента
  */
 void Lysov::lab2()
-{
+{  int i,j,k;
+  double y;
+double  m=a[0][0];
+int index=0;
+ for (k=0;k<N;k++)
+    {
+        for (l=k;l<N;l++)
+        {
+        if (abs(A[l][k])>m)
+            {
+            index=l;
+            m=abs(A[l][k]);
+            }
+        }
+        for (j=0;j<N;j++)
+        {
+            swap(A[k][j],A[index][j]);
+        }
+        swap(b[k],b[index]);
+    m=0;
+    }
+for (k=0;k<N;k++)
+    {
+        for(i=k+1;i<N;i++)
+        {
+            y=A[i][k]/A[k][k];
+            b[i]-=b[k]*y;
+            for(j=0;j<N;j++)
+            {
+                A[i][j]-=A[k][j]*y;
+            }
+        }
+    }
+
+        for(i=N-1;i>=0;i--)
+        {
+
+            x[i]=b[i]/A[i][i];
+            for(j=i+1;j<N;j++)
+            {
+                x[i]+=-A[i][j]*x[j]/A[i][i];
+            }
+        }
+}
 
 }
 
