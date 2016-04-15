@@ -9,8 +9,6 @@
 void ArkunovIL::lab1()
 {
 
-
-
  float s;
 
      for (int j=0;j<N;j++)
@@ -26,7 +24,7 @@ void ArkunovIL::lab1()
 
 x[N]=0;
 
-   for(int i=N;i>=0;i--)
+   for(int i=N-1;i>=0;i--)
      {
       s=0;
       for(int j=i+1;j<N;j++)
@@ -73,7 +71,7 @@ if (maxi != 0) {
 
 x[N]=0;
 
-   for(int i=N;i>=0;i--)
+   for(int i=N-1;i>=0;i--)
      {
       s=0;
       for(int j=i+1;j<N;j++)
