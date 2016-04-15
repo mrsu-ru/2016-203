@@ -40,7 +40,7 @@ void Salnikov::lab2() {
         double max_el = 0;
 
         // Find id of string of max element
-        for (int p = 0; p < N; ++p) {
+        for (int p = k; p < N; ++p) {
             if (std::abs(A[k][p]) >= max_el) {
                 max_el = std::abs(A[k][p]);
                 string_id_of_max_el = p;
