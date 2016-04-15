@@ -19,6 +19,7 @@ SOURCES= \
 				PolyaevaEV.cpp \
 				Salnikov.cpp \
 				Samylkin.cpp \
+				Suharev.cpp \
 				Sukhova.cpp \
 				timovkin.cpp \
 				Zelyunko.cpp

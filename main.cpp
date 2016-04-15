@@ -16,6 +16,7 @@
 #include "PolyaevaEV.h"
 #include "Salnikov.h"
 #include "Samylkin.h"
+#include "Suharev.h"
 #include "Sukhova.h"
 #include "timovkin.h"
 #include "Zelyunko.h"
@@ -76,6 +77,9 @@ int main(int argc, char** argv)
   }
   else if (strcmp(argv[1], "samylkinsn") == 0) {
     l = new Samylkin();
+  }
+  else if (strcmp(argv[1], "suhareval") == 0) {
+    l = new Suharev();
   }
   else if (strcmp(argv[1], "sukhovada") == 0) {
     l = new Sukhova();
