@@ -36,8 +36,9 @@ for (k=0;k<N;k++)
  * Метод Гаусса с выбором главного элемента
  */
 void Lysov::lab2()
-{  int i,j,k;
-  double y;
+{  
+int i,j,k;
+double y;
 double  m=a[0][0];
 int index=0;
  for (k=0;k<N;k++)
@@ -81,7 +82,6 @@ for (k=0;k<N;k++)
         }
 }
 
-}
 
 
 
