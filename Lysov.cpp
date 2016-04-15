@@ -37,9 +37,9 @@ for (k=0;k<N;k++)
  */
 void Lysov::lab2()
 {  
-int i,j,k;
+int i,j,k,l;
 double y;
-double  m=a[0][0];
+double  m=A[0][0];
 int index=0;
  for (k=0;k<N;k++)
     {
