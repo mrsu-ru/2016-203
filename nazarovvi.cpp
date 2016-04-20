@@ -209,7 +209,33 @@ void nazarovvi::lab5()
  */
 void nazarovvi::lab6()
 {
+    long double eps = 0.0001;
+    long double* y = new long double[N];
+    long double norm = 0;
+	long double var = 0;
 
+    for (int i = 0; i < N; i++)
+			x[i] = 0;
+	do
+	{
+		for (int i = 0; i < N; i++)
+			y[i] = x[i];
+
+		for (int i = 0; i < N; i++)
+		{
+			var = 0;
+            norm = 0;
+			for (int j = 0; j < i; j++)
+				var += (A[i][j] * x[j]);
+			for (int j = i + 1; j < N; j++)
+				var += (A[i][j] * x[j]);
+			x[i] = (b[i] - var) / A[i][i];
+			for (int i = 0; i < N; i++)
+				norm += (x[i] - y[i])*(x[i] - y[i]);
+		}
+	} while (sqrt(norm) >= eps);
+
+	delete[] y;
 }
 
 
