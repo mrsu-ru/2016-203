@@ -31,8 +31,4 @@ class godyaev : public lab
    * Один из градиентных методов
    */
   virtual void lab7();
-<<<<<<< HEAD
 };
-=======
-}
->>>>>>> 63233f1921784a4082828cd37426c15c332aed78
