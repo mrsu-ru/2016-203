@@ -228,7 +228,7 @@ void nazarovvi::lab6()
 			for (int j = 0; j < i; j++)
 				var += (A[i][j] * x[j]);
 			for (int j = i + 1; j < N; j++)
-				var += (A[i][j] * y[j]);
+				var += (A[i][j] * x[j]);
 			x[i] = (b[i] - var) / A[i][i];
 			for (int i = 0; i < N; i++)
 				norm += (x[i] - y[i])*(x[i] - y[i]);
