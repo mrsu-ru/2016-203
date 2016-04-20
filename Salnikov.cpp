@@ -74,6 +74,7 @@ void Salnikov::lab2() {
         x[i] = b[i];
         for (int j = i + 1; j < N; ++j)
             x[i] -= x[j] * A[i][j];
+        x[i] /= A[i][i];
     }
 
 }
