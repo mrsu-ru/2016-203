@@ -5,21 +5,21 @@
 * Метод Гаусса
 */
 void Salnikov::lab1() {
-    long double tmp;
+    double tmp;
     for (int i = 0; i < N; i++) {
-        tmp = A[i][i];
+        /*tmp = A[i][i];
         if (tmp != 0) {
             for (int j = N; j >= i; j--) {
                 A[i][j] /= tmp;
                 b[j] /= tmp;
             }
-        }
+        }*/
         for (int j = i + 1; j < N; j++) {
-            tmp = A[j][i];
+            tmp = A[j][i]/A[i][i];
             if (tmp != 0) {
                 for (int k = N; k >= i; k--)
                     A[j][k] -= tmp * A[i][k];
-
+                b[j] -= tmp*b[i];
             }
         }
     }
@@ -29,6 +29,7 @@ void Salnikov::lab1() {
         x[i] = b[i];
         for (int j = i + 1; j < N; ++j)
             x[i] -= x[j] * A[i][j];
+        x[i] /= A[i][i];
     }
 
 }
