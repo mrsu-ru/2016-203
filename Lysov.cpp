@@ -36,7 +36,7 @@ for (k=0;k<N;k++)
  * Метод Гаусса с выбором главного элемента
  */
 void Lysov::lab2()
-{  
+{
 int i,j,k,l;
 double y;
 double  m=A[0][0];
@@ -53,9 +53,9 @@ int index=0;
         }
         for (j=0;j<N;j++)
         {
-            swap(A[k][j],A[index][j]);
+            std::swap(A[k][j],A[index][j]);
         }
-        swap(b[k],b[index]);
+        std::swap(b[k],b[index]);
     m=0;
     }
 for (k=0;k<N;k++)
