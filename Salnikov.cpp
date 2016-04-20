@@ -35,13 +35,12 @@ void Salnikov::lab1() {
 }
 
 void Salnikov::lab2() {
-
-    for (int k = 0; k < N; ++k) {
+    for (int k = 0; k < N; k++) {
         int string_id_of_max_el = -1;
-        double max_el = 0;
+        long double max_el = 0;
 
         // Find id of string of max element
-        for (int p = 0; p < N; ++p) {
+        for (int p = k; p < N; p++) {
             if (std::abs(A[k][p]) >= max_el) {
                 max_el = std::abs(A[k][p]);
                 string_id_of_max_el = p;
@@ -50,15 +49,15 @@ void Salnikov::lab2() {
 
         //
         if (string_id_of_max_el != -1) {
-            for (int j = 0; j < N; ++j) {
+            for (int j = 0; j < N; j++) {
                 std::swap(A[j][string_id_of_max_el], A[j][k]);
             }
             std::swap(b[string_id_of_max_el], b[k]);
 
-            for (int i = k+1; i < N; ++i)
+            for (int i = k+1; i < N; i++)
             {
 
-                double koef = A[i][k]/(A[k][k]*1.0);
+                long double koef = A[i][k]/(A[k][k]*1.0);
                 for (int j = k; j < N; ++j)
                     A[i][j] -= koef*A[k][j];
                 b[i] -= koef*b[k];
