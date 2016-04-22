@@ -74,6 +74,7 @@ void timovkin::lab2()
  */
 void timovkin::lab3()
 {
+	//
 for(int i=0; i<N; i++){
 		double s=0.0;
 		for(int j=0; j<i-1; j++)
