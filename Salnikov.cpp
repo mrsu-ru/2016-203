@@ -107,11 +107,6 @@ void Salnikov::lab3() {
 
     }
 
-    for (int i = 0; i < N; i++) {
-        for (int j = 0; j < i; j++)
-            std::cout << L[i][j] << " ";
-        std::cout << "\n";
-    }
 
     y[0] = b[0];
     for (int i = 1; i < N ; ++i) {
