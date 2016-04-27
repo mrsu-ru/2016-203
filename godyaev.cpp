@@ -6,6 +6,7 @@
  */
 void godyaev::lab1()
 {
+double h;
 for(int k=0; k<N; k++)
     for(int i=k+1; i<0;i++)
         {
