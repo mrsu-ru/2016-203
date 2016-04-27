@@ -10,6 +10,7 @@ std::string karchiganovaf::get_name()
  */
 void karchiganovaf::lab1()
 {
+
 	double koef=0;
 	for (int k=1; k<N; k++)
 	{
@@ -25,6 +26,7 @@ void karchiganovaf::lab1()
 		for (int j=i+1; j<N; j++) b[i]-=A[i][j]*x[j];
 		x[i]=b[i]/A[i][i];
 	}
+	return;
 }
 
 
@@ -47,7 +49,8 @@ void karchiganovaf::lab2()
 		std::swap(A[_max_], A[k]);
 		std::swap(b[_max_], b[k]);
 	}
-	karchiganovaf::lab1();
+	lab1();
+	return;
 }
 
 
@@ -57,7 +60,37 @@ void karchiganovaf::lab2()
  */
 void karchiganovaf::lab3()
 {
+	double** L=new double*[N];
+	double L_i_p=0;
+	for (int i=0; i<N; i++)
+	{
+		L[i]=new double[N];
+		for (int j=0; j<i; j++)
+		{
+			L_i_p=0;
+			for (int p=0; p<j; p++) L_i_p+=L[i][p]*L[j][p];
+			L[i][j]=sqrt(A[i][j]-L_i_p)/L[j][j];
+		}
+		L_i_p=A[i][i];
+		for (int p=0; p<i; p++) L_i_p-=L[i][p]*L[i][p];
+		L[i][i]=sqrt(L_i_p);
+	}
 
+	double* y=new double[N];
+
+	for (int i=0; i<N; i++)
+	{
+		for (int j=i-1; j>=0; j--) b[i]-=L[i][j]*y[j];
+		y[i]=b[i]/L[i][i];
+	}
+
+	for (int i=N-1; i>=0; i--)
+	{
+		for (int j=i+1; j<N; j++) y[i]-=L[j][i]*x[j];
+		x[i]=y[i]/L[i][i];
+	}
+	delete[] y;
+	return;
 }
 
 
