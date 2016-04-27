@@ -80,7 +80,56 @@ void Salnikov::lab2() {
 }
 
 void Salnikov::lab3() {
+     double **L;
+    L = new double*[N];
+    for (int i = 0;  i < N; i++) {
+        L[i] = new double[N];
+        memset(L[i], 0, sizeof(double)*N);
+    }
+    double *y;
+    y = new double[N];
 
+
+    for (int i = 0; i < N; i++) {
+        double sumikjk = 0;
+
+        for (int j = 0; j < i; j++) { // поиск эл/ слева от диагонали
+            sumikjk = 0;
+            for (int k = 0; k < j; k++)
+                sumikjk += L[i][k] * L[j][k];
+            L[i][j] = (A[i][j] - sumikjk) / L[j][j];
+        }
+
+        sumikjk = 0;
+        for (int k = 0; k < i; k++)
+            sumikjk += L[i][k] * L[i][k];
+        L[i][i] = sqrt(A[i][i] - sumikjk);
+
+    }
+
+
+    y[0] = b[0];
+    for (int i = 1; i < N ; ++i) {
+        y[i] = b[i];
+        for (int j = 0; j < i; ++j) {
+            y[i] -= y[j]*L[i][j];
+        }
+        y[i] /= L[i][i];
+    }
+
+    x[N - 1] = y[N - 1];
+    for (int i = N - 2; i >= 0; i--) {
+        x[i] = y[i];
+        for (int j = i + 1; j < N; ++j)
+            x[i] -= x[j] * L[j][i];
+        x[i] /= L[i][i];
+    }
+
+
+    for (int i = 0; i < N; i++)
+        delete[] L[i];
+    delete[] L;
+    delete[] y;
 }
 
 void Salnikov::lab4() {
