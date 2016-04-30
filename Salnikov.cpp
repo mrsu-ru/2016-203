@@ -133,7 +133,36 @@ void Salnikov::lab3() {
 }
 
 void Salnikov::lab4() {
+    double *d, *c, *a; // верхняя, главная, нижняя
+    d = new double[N];
+    c = new double[N];
+    a = new double[N];
+    double m;
 
+    a[0] = 0;
+    d[N-1] = 0;
+    for (int i = 0; i < N; ++i)
+    {
+        if (i - 1 >= 0 && i - 1 < N) 
+            d[i] = A[i-1][i];
+        c[i] = A[i][i];
+        if (i + 1 >= 0 && i + 1 < N) 
+            a[i] = A[i+1][i];
+    }  
+
+    for (int i = 1; i < N; i++)
+    {
+        m = a[i]/c[i-1];
+        c[i] = c[i] - m*d[i-1];
+        b[i] = b[i] - m*b[i-1];
+    }
+
+    x[N-1] = b[N-1]/c[N-1];
+
+    for (int i = N - 2; i >= 0; i--)
+        x[i]=(b[i]-d[i]*x[i+1])/c[i];  
+
+    delete[] b, c, d;
 }
 
 void Salnikov::lab5() {
