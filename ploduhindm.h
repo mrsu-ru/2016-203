@@ -31,4 +31,10 @@ class ploduhindm : public lab
    * Один из градиентных методов
    */
   virtual void lab7();
+
+  mskl(long double *a, long double *b);
+  mvect(long double **a, long double *b);
+  subsvect(long double *a, long double *b);
+  numvect(long double *a, long double m);
+
 };
