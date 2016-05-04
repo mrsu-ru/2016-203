@@ -61,19 +61,20 @@ void karchiganovaf::lab2()
 void karchiganovaf::lab3()
 {
 	double** L=new double*[N];
-	double L_i_p=0;
+	double L_i_k=0;
 	for (int i=0; i<N; i++)
 	{
-		L[i]=new double[N];
+		L[i]=new double[i+1];
+		L_i_k=0;
 		for (int j=0; j<i; j++)
 		{
-			L_i_p=0;
-			for (int p=0; p<j; p++) L_i_p+=L[i][p]*L[j][p];
-			L[i][j]=sqrt(A[i][j]-L_i_p)/L[j][j];
+			L_i_k=0;
+			for (int k=0; k<j; k++) L_i_k+=L[i][k]*L[j][k];
+			L[i][j]=(A[i][j]-L_i_k)/L[j][j];
 		}
-		L_i_p=A[i][i];
-		for (int p=0; p<i; p++) L_i_p-=L[i][p]*L[i][p];
-		L[i][i]=sqrt(L_i_p);
+		L_i_k=A[i][i];
+		for (int k=0; k<i; k++) L_i_k-=L[i][k]*L[i][k];
+		L[i][i]=sqrt(L_i_k);
 	}
 
 	double* y=new double[N];
@@ -90,6 +91,8 @@ void karchiganovaf::lab3()
 		x[i]=y[i]/L[i][i];
 	}
 	delete[] y;
+	for (int i=0; i<N; i++) delete[] L[i];
+	delete[] L;
 	return;
 }
 
