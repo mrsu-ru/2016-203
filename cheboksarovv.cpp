@@ -154,8 +154,10 @@ void cheboksarovv::lab6()
 	for (int i=0;i<N;i++) 
          {
           v=0; 
-          for(int j=0;j<N;j++)
-           if(j!=i) v+=(A[i][j]*x[j]);
+          for(int j=0;j<i;j++)
+           v+=(A[i][j]*x[j]);
+          for(int j=i+1;j<N;j++)
+           v+=(A[i][j]*a1[j]);
           x[i]=(b[i]-v)/A[i][i];  
           n=0;
 	  for (int k=0;k<N;k++) 
