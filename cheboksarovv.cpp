@@ -141,8 +141,28 @@ void cheboksarovv::lab5()
  }
 
 void cheboksarovv::lab6()
-{
-
+{   
+    double* a1=new double[N];
+    double e=0.000001;
+    double n=0,v=0;
+      for(int i=0;i<N;i++) {x[i]=0;}
+   do
+    {
+	for (int i=0;i<N;i++) 
+           a1[i]=x[i];
+         
+	for (int i=0;i<N;i++) 
+         {
+          v=0; 
+          for(int j=0;j<N;j++)
+           if(j!=i) v+=(A[i][j]*x[j]);
+          x[i]=(b[i]-v)/A[i][i];  
+          n=0;
+	  for (int k=0;k<N;k++) 
+          {n+=pow((x[k]-a1[k]),2);}	
+         }	
+    } while (sqrt(n)>=e);
+	delete[] a1;
 }
 
 void cheboksarovv::lab7()
