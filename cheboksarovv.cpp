@@ -174,7 +174,7 @@ double cheboksarovv::uc(double *a, double *b)
    m+=a[i]*b[i];
   return m;       
 } 
-double* cheboksarovv::um(vector<vector<double> > a,double *b)
+double* cheboksarovv::um(double **a,double *b)
 {
   double *x = new double [N];
   double m=0;
