@@ -166,6 +166,27 @@ void Salnikov::lab4() {
 }
 
 void Salnikov::lab5() {
+    double eps = 0.000001;
+    double* B = new double[N];
+    double norma;
+
+    while (norma >= eps) {
+        for (int i = 0; i < N; i++) {
+            B[i] = b[i];
+            for (int j = 0; j < N; j++) {
+                if (i != j)
+                    B[i] -= A[i][j] * x[j];
+            }
+            B[i] /= A[i][i];
+        }
+        norma = abs(x[0] - B[0]);
+        for (int j = 0; j < N; j++) {
+            if (abs(x[j] - B[j]) > norma)
+                norma = abs(x[j] - B[j]);
+            x[j] = B[j];
+        }
+    }
+    delete[] B;
 
 }
 
