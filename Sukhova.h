@@ -1,7 +1,7 @@
 #pragma once
 #include "lab.h"
 
-class Chucmarevaki : public lab
+class Sukhova : public lab
 {
   /**
    * ����� ������
