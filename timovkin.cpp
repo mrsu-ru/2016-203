@@ -5,6 +5,7 @@
  */
 void timovkin::lab1()
 {
+//
 double p;
 for (int i = 0; i<N; i++)
 for (int k=i+1;k<N;k++)
