@@ -47,7 +47,7 @@ void Samylkin::lab2()
     if (k!=0)
         for (int j=0; j<N; j++)
         {
-        swap(A[0][j],A[k][j]);
+        std::swap(A[0][j],A[k][j]);
         }
         int p=0,t=0;
         float y;
