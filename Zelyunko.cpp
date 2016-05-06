@@ -228,7 +228,7 @@ for(int i=N-1;i>=0;i--)
 /**
  * Метод прогонки
  */
-void ivanovii::lab4()
+void Zelyunko::lab4()
 {
 
 }
@@ -238,7 +238,7 @@ void ivanovii::lab4()
 /**
  * Метод Якоби
  */
-void ivanovii::lab5()
+void Zelyunko::lab5()
 {
 
 }
@@ -248,7 +248,7 @@ void ivanovii::lab5()
 /**
  * Метод Зейделя
  */
-void ivanovii::lab6()
+void Zelyunko::lab6()
 {
 
 }
@@ -258,7 +258,7 @@ void ivanovii::lab6()
 /**
  * Один из градиентных методов
  */
-void ivanovii::lab7()
+void Zelyunko::lab7()
 {
 
 }
