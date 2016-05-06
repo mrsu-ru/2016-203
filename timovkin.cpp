@@ -1,27 +1,26 @@
 #include "timovkin.h"
 
 /**
- * ����� ������
+ * Метод Гаусса
  */
 void timovkin::lab1()
 {
-//
-double p;
+double s;
 for (int i = 0; i<N; i++)
 for (int k=i+1;k<N;k++)
 {
-p=A[k][i]/A[i][i];
-b[k]=b[k]-b[i]*p;
+s=A[k][i]/A[i][i];
+b[k]=b[k]-b[i]*s;
 for (int j=0;j<N;j++)
-A[k][j]=A[k][j]-A[i][j]*p;
+A[k][j]=A[k][j]-A[i][j]*s;
 }
 for (int i = N-1; i>=0; i--)
 for (int k=i-1;k>=0;k--)
 {
-p=A[k][i]/A[i][i];
-b[k]=b[k]-b[i]*p;
+s=A[k][i]/A[i][i];
+b[k]=b[k]-b[i]*s;
 for (int j=N-1;j>=0;j--)
-A[k][j]=A[k][j]-A[i][j]*p;
+A[k][j]=A[k][j]-A[i][j]*s;
 }
 for (int j = 0; j<N; j++)
 x[j]=b[j]/A[j][j];
@@ -29,13 +28,13 @@ x[j]=b[j]/A[j][j];
 
 
 /**
- * ����� ������ � ������� �������� ��������
+ * Метод Гаусса с выбором главного элемента
  */
 void timovkin::lab2()
 {
    for (int i = 0; i < N; i++)
         x[i] = b[i];
-    double m,temp;
+    float m,temp;
      int ii;
      for (int k = 0; k < N-1; k++)
         {
@@ -71,12 +70,14 @@ void timovkin::lab2()
 }
 
 /**
- * ����� ����������� ����� (����� ���������)
+ * Метод квадратного корня (метод Холецкого)
  */
 void timovkin::lab3()
 {
-	//
-for(int i=0; i<N; i++){
+	float l[N][N], y[N][N];
+	float f[N];
+for(int i=0; i<N; i++)
+{
 		double s=0.0;
 		for(int j=0; j<i-1; j++)
             {
