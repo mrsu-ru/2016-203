@@ -191,7 +191,36 @@ void Salnikov::lab5() {
 }
 
 void Salnikov::lab6() {
+    double eps = 0.000001;
+    double* y = new double[N];
+    double norma = 0;
+    
+    for (int i = 0; i < N; i++)
+        x[i] = 0; //текущее решение
+    while (sqrt(norma) >= eps);
+    {
+        for (int i = 0; i < N; i++)
+            y[i] = x[i]; // предидущее решение
 
+        for (int i = 0; i < N; i++)
+        {
+            double tmp = 0;
+            norma = 0;
+            
+            for (int j = 0; j < i; j++)
+                tmp += (A[i][j] * x[j]);
+            
+            for (int j = i + 1; j < N; j++)
+                tmp += (A[i][j] * x[j]);
+            
+            x[i] = (b[i] - tmp) / A[i][i];
+            
+            for (int i = 0; i < N; i++)
+                norma += pow((x[i] - y[i]), 2.0);
+        }
+    }
+
+    delete[] y;
 }
 
 void Salnikov::lab7() {
