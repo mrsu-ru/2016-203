@@ -234,17 +234,17 @@ void ploduhindm::lab6()
 /**
  * Один из градиентных методов
  */
- long double ploduhindm::mskl(long double *a, long double *b)
+ double ploduhindm::mskl(double *a, double *b)
 {
-    long double x=0;
+    double x=0;
     for (int i=0; i<N; i++)
         x+=a[i]*b[i];
     return x;
 }
-long double* ploduhindm::mvect(long double **a, long double *b)
+double* ploduhindm::mvect(double **a, double *b)
 {
-     long double *x = new long double [N];
-     long double m=0;
+     double *x = new double [N];
+     double m=0;
      for (int i=0; i<N; i++)
         {
             for (int j=0; j<N; j++)
@@ -254,26 +254,26 @@ long double* ploduhindm::mvect(long double **a, long double *b)
         }
     return x;
 }
-long double* ploduhindm::subsvect(long double *a, long double *b)
+double* ploduhindm::subsvect(double *a, double *b)
 {
-     long double *x = new long double [N];
+     double *x = new double [N];
      for (int i=0; i<N; i++)
         x[i]=a[i]-b[i];
     return x;
 }
-long double* ploduhindm::numvect(long double *a, long double m)
+double* ploduhindm::numvect(double *a, double m)
 {
-     long double *x = new long double [N];
+     double *x = new double [N];
      for (int i=0; i<N; i++)
         x[i]=a[i]*m;
     return x;
 }
 void ploduhindm::lab7()
 {
-    long double eps = 0.0001;
-    long double* p = new long double[N];
-    long double* r = new long double[N];
-	long double norm,t;
+    double eps = 0.0001;
+    double* p = new double[N];
+    double* r = new double[N];
+	double norm,t;
 	for (int i=0; i<N; i++)
     {
         x[i]=0;

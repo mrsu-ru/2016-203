@@ -32,9 +32,9 @@ class ploduhindm : public lab
    */
   virtual void lab7();
 
-  long double mskl(long double *a, long double *b);
-  long double* mvect(long double **a, long double *b);
-  long double* subsvect(long double *a, long double *b);
-  long double* numvect(long double *a, long double m);
+  double mskl(double *a, double *b);
+  double* mvect(double **a, double *b);
+  double* subsvect(double *a, double *b);
+  double* numvect(double *a, double m);
 
 };
