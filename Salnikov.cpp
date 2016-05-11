@@ -197,7 +197,7 @@ void Salnikov::lab6() {
     
     for (int i = 0; i < N; i++)
         x[i] = 0; //текущее решение
-    while (sqrt(norma) >= eps);
+    while (norma >= eps);
     {
         for (int i = 0; i < N; i++)
             y[i] = x[i]; // предидущее решение
@@ -216,7 +216,7 @@ void Salnikov::lab6() {
             x[i] = (b[i] - tmp) / A[i][i];
             
             for (int i = 0; i < N; i++)
-                norma += pow((x[i] - y[i]), 2.0);
+                norma += abs(x[i] - y[i]);
         }
     }
 
