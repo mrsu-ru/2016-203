@@ -31,4 +31,9 @@ class ivanovii : public lab
    * Один из градиентных методов
    */
   virtual void lab7();
+  virtual void mult( double** M,  double* v,  double* r);
+  virtual void multnum( double a,  double* v,  double* r);
+  virtual double scale( double* v1,  double* v2);
+  virtual void subtr( double* v1,  double* v2,  double* r);
+
 };

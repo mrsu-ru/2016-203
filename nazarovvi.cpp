@@ -240,10 +240,74 @@ void nazarovvi::lab6()
 
 
 
+void mult( double** M,  double* v,  double* r)
+{
+    double s=0;
+    for (int i=0; i < N; i++)
+    {
+        for (int j=0; j < N; j++)
+                s += M[i][j]*v[j];
+        r[i] = s;
+        s = 0;
+    }
+};
+void multnum( double a,  double* v,  double* r)
+{
+    for (int i=0; i < N; i++)
+        r[i] = a*v[i];
+};
+ double scale( double* v1,  double* v2)
+{
+     double result = 0;
+    for (int i=0; i < N; i++)
+        result += v1[i]*v2[i];
+    return result;
+};
+
+void subtr( double* v1,  double* v2,  double* r)
+{
+    for (int i=0; i < N; i++)
+        r[i] = v1[i]-v2[i];
+};
+
 /**
  * Один из градиентных методов
  */
 void nazarovvi::lab7()
 {
+    double* y = new double[N];
+    double* r = new double[N];
+    double* buff = new double[N];
+    double t=0;
+    double norm=0;
 
-}
+    for (int i=0; i<N; i++)
+    {
+        y[i] = 0;
+        r[i] = 0;
+        buff[i] = 0;
+    }
+
+    do
+    {
+        mult(A, y, buff);
+        subtr(buff, b, r);
+        mult(A, r, buff);
+        t=scale(r, r)/scale(buff, r);
+        multnum(t, r, buff);
+        subtr(x, buff, y);
+        norm = abs(x[0]-y[0]);
+        for (int i = 0; i < N; i++)
+        {
+			if (abs(x[i] - y[i]) > norm)
+				norm = abs(x[i] - y[i]);
+            x[i] = y[i];
+		}
+    }while(norm >= eps);
+    delete[] r;
+    delete[] y;
+    delete[] buff;
+};
+
+
+
