@@ -166,11 +166,12 @@ void Salnikov::lab4() {
 }
 
 void Salnikov::lab5() {
-    double eps = 0.000001;
+    double eps = 0.0001;
     double* B = new double[N];
     double norma;
 
-    while (norma >= eps) {
+    do 
+	{
         for (int i = 0; i < N; i++) {
             B[i] = b[i];
             for (int j = 0; j < N; j++) {
@@ -185,19 +186,19 @@ void Salnikov::lab5() {
                 norma = abs(x[j] - B[j]);
             x[j] = B[j];
         }
-    }
+    } while (norma >= eps);
     delete[] B;
 
 }
 
 void Salnikov::lab6() {
-    double eps = 0.000001;
+    double eps = 0.0001;
     double* y = new double[N];
     double norma = 0;
     
     for (int i = 0; i < N; i++)
         x[i] = 0; //текущее решение
-    while (norma >= eps);
+    do
     {
         for (int i = 0; i < N; i++)
             y[i] = x[i]; // предидущее решение
@@ -218,7 +219,7 @@ void Salnikov::lab6() {
             for (int i = 0; i < N; i++)
                 norma += abs(x[i] - y[i]);
         }
-    }
+    } while (norma >= eps);
 
     delete[] y;
 }
