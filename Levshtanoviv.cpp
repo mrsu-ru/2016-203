@@ -160,9 +160,7 @@ void Levshtanoviv::lab3()
              x[i]=(u[i]-sum)/qq[i][i];
           }
 
-        for (int i = 0; i<N; i++)
-	       f1<<x[i]<<' ';
-	    f1<<endl;
+        
 }
 
 
@@ -184,8 +182,7 @@ void Levshtanoviv::lab4()
     x[N-1] = k1[N-1];
     for(int i=N-1; i>=0; i--){
      x[i] = k[i]*x[i+1]+k1[i];
-     f1<<x[i]<<" ";}
-     f1<<endl;
+    };
       delete[] k;
       delete[] k1;
 
