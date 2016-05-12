@@ -30,11 +30,11 @@ class cheboksarovv: public lab
   /**
    * ÐžÐ´Ð¸Ð½ Ð¸Ð· Ð³Ñ€Ð°Ð´Ð¸ÐµÐ½Ñ‚Ð½Ñ‹Ñ… Ð¼ÐµÑ‚Ð¾Ð´Ð¾Ð²
    */
-  bool logik(double *x,double *y,double e)
-  double* um(double **x,double *y)
-  double* v(double *x, double *y)
-  double uc(double *x, double *y) 
-  double* umc( double *x,double y)
+  bool logik(double *x,double *y,double e);
+  double* um(double **x,double *y);
+  double* v(double *x, double *y);
+  double uc(double *x, double *y);
+  double* umc( double *x,double y);
   virtual void lab7();
  
 }
