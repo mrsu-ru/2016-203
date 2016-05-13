@@ -167,6 +167,51 @@ void cheboksarovv::lab6()
 	delete[] a1;
 }
 
-void cheboksarovv::lab7()
+double* cheboksarovv::umc( double *x,double y)
+ {
+ double *z = new double [N];
+ for (int i=0; i<N; i++) z[i]=x[i]*y;
+     return z; 
+     }
+double cheboksarovv::uc(double *x, double *y) 
 {
+  double z=0;
+  for (int i=0;i<N;i++) z+=x[i]*y[i];
+  return z;       
+} 
+double* cheboksarovv::v(double *x, double *y)
+ {
+   double *z = new double [N];
+      for (int i=0; i<N; i++) z[i]=x[i]-y[i];
+     return z;
+ }
+double* cheboksarovv::um(double **x,double *y)
+{
+  double *z = new double [N];
+  double q=0;
+  for (int i=0; i<N; i++)
+   {for (int j=0; j<N; j++) q+=x[i][j]*y[j];
+    z[i]=q;
+    q=0;}
+    return z;
+}
+ bool cheboksarovv::logik(double *x,double *y,double e)
+ {
+  double n=abs(x[0]-y[0]);
+   for(int j=0;j<N;j++)
+          {
+            if (abs(x[j]-y[j])>n) n=abs(x[j]-y[j]);
+            x[j]=y[j];     
+                 }   
+  if (n>=e) return true;
+  else return false;               
+      }
+void cheboksarovv::lab7()
+{ double* a1=new double[N];
+  double* a2=new double[N];
+  double e=0.00000001;
+   do{
+       a2=v(um(A,x),b);
+       a1=v(a1,umc(a2,uc(um(A,a2),a2)/uc(um(A,a2),um(A,a2))));
+            }while(logik(x,a1,e));
 }
