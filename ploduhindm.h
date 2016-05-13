@@ -32,5 +32,9 @@ class ploduhindm : public lab
    */
   virtual void lab7();
 
-  int maxEl(long double* a, int x);
+  double mskl(double *a, double *b);
+  double* mvect(double **a, double *b);
+  double* subsvect(double *a, double *b);
+  double* numvect(double *a, double m);
+
 };
