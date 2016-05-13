@@ -129,7 +129,30 @@ void karchiganovaf::lab4()
  */
 void karchiganovaf::lab5()
 {
-
+	double eps=0.00001; // Точность нормы разности
+	double* xlast=new double[N];
+	for (int i=0; i<N; i++) xlast[i]=0;
+	double* xnext;
+	double delta_x;
+	double axk=0;
+	do
+	{
+		xnext=new double[N];
+		delta_x=0;
+		for (int i=0; i<N; i++)
+		{
+			axk=0;
+			for (int k=0; k<i; k++) axk+=A[i][k]*xlast[k];
+			for (int k=i+1; k<N; k++) axk+=A[i][k]*xlast[k];
+			xnext[i]=(b[i]-axk)/A[i][i];
+			delta_x+=pow(xnext[i]-xlast[i], 2);
+		}
+		delta_x=sqrt(delta_x);
+		delete[] xlast;
+		xlast=xnext;
+	} while (delta_x>eps);
+	x=xlast;
+	return;
 }
 
 
