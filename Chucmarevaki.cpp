@@ -37,8 +37,8 @@ void Chucmarevaki::lab2()
        {
             if (abs(A[p][k] >= abs(A[i][k])))
            {
-               for (int j = 0; j < N; j++)   swap(A[p][j],A[k][j]);
-               swap(b[p],b[k]);
+               for (int j = 0; j < N; j++)   std::swap(A[p][j],A[k][j]);
+               std::swap(b[p],b[k]);
            }
        }
 }
