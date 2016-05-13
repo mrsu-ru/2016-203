@@ -228,7 +228,7 @@ void Levshtanoviv::lab5()
  */
 void Levshtanoviv::lab6()
 {
-    double epsilon = 0.0001;
+    double epsilon = 0.000001;
     double* mas = new  double[N];
     double norm = 1;
 	double perem = 0;
