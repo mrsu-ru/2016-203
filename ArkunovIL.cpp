@@ -25,9 +25,9 @@ void ArkunovIL::lab1()
       W[j][k]=W[j][k]-(W[i][k]*d);
    }
 
-x[N]=0;
+x[N-1]=0;
 
-   for(int i=N;i>=0;i--)
+   for(int i=N-1;i>=0;i--)
      {
       s=0;
       for(int j=i+1;j<N;j++)
@@ -74,7 +74,7 @@ if (maxi != 0) {
       W[j][k]=W[j][k]-(W[i][k]*d);
    }
 
-x[N]=0;
+x[N-1]=0;
 
    for(int i=N-1;i>=0;i--)
      {
