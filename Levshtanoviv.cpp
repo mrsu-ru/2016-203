@@ -90,6 +90,76 @@ for (int k = 0; k<N; k++)
  */
 void Levshtanoviv::lab3()
 {
+     float D[N][N], min_i_j, sum;
+     float S[N][N], tS[N][N], u[N], qq[N][N];
+      S[0][0]=sqrt(A[0][0]);
+      D[0][0]=A[0][0]/A[0][0];
+
+      for (int j=1; j<N; j++)
+          S[0][j]=A[j][0]/(S[0][0]*D[0][0]);
+
+      S[1][1]=sqrt(A[1][1]-S[0][1]*S[0][1]*D[0][0]);
+      D[1][1]=(A[1][1]-S[0][1]*S[0][1]*D[0][0])/(A[1][1]-S[0][1]*S[0][1]*D[0][0]);
+
+      for (int i=2; i<N; i++)
+        S[1][i]=(A[i][1]-S[0][i]*S[0][1]*D[0][0])/(D[1][1]*S[1][1]);
+
+      for(int i=2; i<N; i++)
+      {
+          sum=0;
+          for (int k=0; k<i; k++)
+            sum=sum+S[k][i]*S[k][i]*D[k][k];
+          S[i][i]=sqrt(A[i][i]-sum);
+          D[i][i]=(A[i][i]-sum)/(A[i][i]-sum);
+
+      }
+
+
+      for(int i=1; i<N; i++)
+        for(int j=i+1; j<=N; j++)
+      {float sum=0;
+          if(i>j) min_i_j=j;
+            else min_i_j=i;
+
+
+          for (int k=0; k<=min_i_j; k++)
+            sum=sum+S[k][i]*S[k][j]*D[k][k];
+          S[i][j]=(A[j][i]-sum)/(D[i][i]*S[i][i]);
+      }
+
+      for (int i=0; i<N; i++)
+        for (int j=0; j<N; j++)
+           tS[i][j]=S[j][i];
+
+      for (int i=0; i<N; i++)
+      {
+         for (int j=0; j<N; j++)
+		 {
+			 sum=0;
+			 for (int k=0; k<N; k++)
+				sum=sum+(S[i][k]*D[k][j]);
+			 qq[i][j]=sum;
+   	     }
+      }
+
+      for (int i=0;i<N;i++)
+        for (int j=0;j<N;j++)
+        {
+           sum=0;
+           for (int k=0;k<N-1;k++)
+              sum=sum+tS[i][k]*u[k];
+           u[i]=(b[i]-sum)/tS[i][i];
+        }
+
+        for (int i=N-1;i>=0;i--)
+          for (int j=N-1;j>=0;j--)
+          {
+             sum=0;
+             for (int k=N-1;k>0;k--)
+                sum=sum+qq[i][k]*x[k];
+             x[i]=(u[i]-sum)/qq[i][i];
+          }
+
 
 }
 
@@ -100,6 +170,21 @@ void Levshtanoviv::lab3()
  */
 void Levshtanoviv::lab4()
 {
+  double* k=new double[N];
+ double* k1=new double[N];
+    k[0]=-A[0][1]/A[0][0];
+    k1[0]=b[0]/A[0][0];
+   for(int i=1;i<N;i++)
+    {
+     k[i]=-A[i][i+1]/(A[i][i-1]*k[i-1]+A[i][i]);
+     k1[i]=(b[i]-A[i][i-1]*k1[i-1])/(A[i][i-1]*k[i-1]+A[i][i]);
+    }
+    x[N-1] = k1[N-1];
+    for(int i=N-1; i>=0; i--){
+     x[i] = k[i]*x[i+1]+k1[i];
+    };
+      delete[] k;
+      delete[] k1;
 
 }
 
@@ -110,8 +195,31 @@ void Levshtanoviv::lab4()
  */
 void Levshtanoviv::lab5()
 {
+ double* mas=new double[N];
+    double epsilon=0.000001;
+    double perem=epsilon;
+    while (perem>=epsilon)
+    {
+	for (int i=0;i<N;i++)
+        {
+           mas[i]=b[i];
+	       for (int j=0;j<N;j++)
+           {
+		      if (i!=j) mas[i]-=A[i][j]*x[j];
+	       }
+	       mas[i]/=A[i][i];
+	    }
+    perem=abs(x[0]-mas[0]);
+	for (int i1=0;i1<N;i1++)
+        {
+	       if (abs(x[i1]-mas[i1])>perem) perem=abs(x[i1]-mas[i1]);
+	       x[i1]=mas[i1];
+	    }
+    }
+    delete[] mas;
+ }
 
-}
+
 
 
 
@@ -120,8 +228,35 @@ void Levshtanoviv::lab5()
  */
 void Levshtanoviv::lab6()
 {
+    double epsilon = 0.000001;
+    double* mas = new  double[N];
+    double norm = 1;
+	double perem = 0;
 
+    for (int i = 0; i < N; i++)
+			x[i] = 0;
+	while (sqrt(norm) >= epsilon)
+	{
+		for (int i = 0; i < N; i++)
+			mas[i] = x[i];
+
+		for (int i = 0; i < N; i++)
+		{
+			perem = 0;
+            norm = 0;
+			for (int j = 0; j < i; j++)
+				perem = perem +(A[i][j] * x[j]);
+			for (int k = i + 1; k < N; k++)
+				perem = perem + (A[i][k] * x[k]);
+			x[i] = (b[i] - perem) / A[i][i];
+			for (int i1 = 0; i1 < N; i1++)
+				norm = norm +(x[i1] - mas[i1])*(x[i1] - mas[i1]);
+		}
+	} ;
+
+	delete[] mas;
 }
+
 
 
 
