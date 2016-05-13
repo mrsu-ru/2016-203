@@ -1,7 +1,4 @@
 #include "ArkunovIL.h"
-#include<iostream>
-#include<iomanip>
-#include<cmath>
 
 /**
  * Метод Гаусса
@@ -37,7 +34,7 @@ x[N]=0;
         s=s+W[i][j]*x[j];
       x[i]=(W[i][N]-s)/W[i][i];
 }
-
+}
 
 /**
  * Метод Гаусса с выбором главного элемента
