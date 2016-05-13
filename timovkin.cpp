@@ -5,7 +5,7 @@
  */
 void timovkin::lab1()
 {
-double s;
+float s;
 for (int i = 0; i<N; i++)
 for (int k=i+1;k<N;k++)
 {
@@ -78,7 +78,7 @@ void timovkin::lab3()
 	float f[N];
 for(int i=0; i<N; i++)
 {
-		double s=0.0;
+		float s=0.0;
 		for(int j=0; j<i-1; j++)
             {
 			s+=l[i][j]*l[i][j];
@@ -93,7 +93,7 @@ for(int i=0; i<N; i++)
 		}
 	}
 	for(int i=0; i<N; i++){
-		double s = 0.0;
+		float s = 0.0;
 		for(int j=0; j<i; j++){
 			s += l[i][j]*y[j];
 
@@ -106,7 +106,7 @@ for(int i=0; i<N; i++)
 		}
 	}
    for(int i=N-1; i>=0; i--){
-		double s = 0.0;
+		float s = 0.0;
 		for(int j=i+1; j<N; j++){
 			s += l[i][j]*x[j];
 		}
