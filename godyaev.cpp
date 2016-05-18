@@ -148,6 +148,30 @@ void godyaev::lab4()
  */
 void godyaev::lab5()
 {
+   double e=0.0000001;
+   double flag=e;
+   double* AA=new double[N];
+   while(flag>=e)
+       {
+             for (int i=0;i<N;i++)
+             {
+                   AA[i]=b[i];
+                   for (int j=0;j<N;j++)
+                       {
+                           if (i!=j)
+                               AA[i]=AA[i]+A[i][j]*x[j];
+                       }
+             AA[i]=AA[i]/A[i][i];
+             }
+             flag=abs(x[0]-AA[0]);
+            
+             for (int k=0;k<N;k++)
+             {
+                 if (abs(x[k]-AA[k])>flag)
+                     flag=abs(x[k]-AA[k]);
+                 x[k]=AA[k];
+             }
+       }
 
 }
 
@@ -158,7 +182,24 @@ void godyaev::lab5()
  */
 void godyaev::lab6()
 {
-
+	double e=0.0000001;
+	double flag=e,flag2,s;
+	while(flag>=e)
+ 	   {
+   	      flag=0;
+  	        for (int i=0;i<N;i++)
+   	       {
+   	           s=0;
+   	             for (int j=0;j<N;j++)
+   	                 {
+   	                     if (i!=j)
+        	                    s=s+A[i][j]*x[j];
+                	    }
+    	             flag2=x[i];
+    	             x[i]=(b[i]-s)/A[i][i];
+    	             flag=abs(x[i]-flag2);
+    	      }
+    	    }
 }
 
 
