@@ -210,13 +210,16 @@ void ploduhindm::lab6()
         x[i]=0;
     do
     {
-        for(int i = 0; i < N; i++)
+        for (int i = 0; i < N; i++)
+            p[i] = x[i];
+        for (int i = 0; i < N; i++)
         {
             double var = 0;
-            for(int j = 0; j < N; j++)
-                if(j != i) var += (A[i][j]*x[j]);
-            p[i] = x[i];
-            x[i]=(b[i] - var)/A[i][i];
+            for (int j = 0; j < i; j++)
+                var += (A[i][j] * x[j]);
+            for (int j = i + 1; j < N; j++)
+                var += (A[i][j] * p[j]);
+            x[i] = (b[i] - var) / A[i][i];
         }
         conv=true;
         for (int i = 0; i < N; i++)
