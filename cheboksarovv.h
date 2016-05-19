@@ -38,5 +38,5 @@ class cheboksarovv: public lab
   virtual void lab7();
   double **t(double **x);
   double **um1(double **x,double **y);
-  virtual void lab7();
+  virtual void lab8();
 }
