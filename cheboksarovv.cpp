@@ -215,3 +215,54 @@ void cheboksarovv::lab7()
        a1=v(a1,umc(a2,uc(um(A,a2),a2)/uc(um(A,a2),um(A,a2))));
             }while(logik(x,a1,e));
 }
+
+double** cheboksarovv::t(double **x)
+{
+  double **z = new double *[N];
+  for(int i=0; i<N; i++) {z[i] = new double [N];}  
+   for(int i=0; i<N; i++) 
+      for(int j=0; j<N; j++) { z[i][j]=x[j][i];}
+      return z;
+}
+double** cheboksarovv::um1(double **x,double **y)
+{
+  double q=0;
+  double **z = new double *[N];
+   for(int i=0; i<N; i++) {z[i] = new double [N];}
+    for(int i=0; i<N; i++) {
+      for(int j=0; j<N; j++) {
+       q=0;
+        for(int j1=0; j1<N; j1++) { q+=x[i][j1]*y[j1][j];}
+       z[i][j] = q;
+      }
+     }
+     int y1=0;
+     return z;
+    }
+void cheboksarovv::lab8()
+{
+	double e=0.01;
+        double m=0,s=0;
+        double **u = new double *[N];   
+        for(int i=0; i<N; i++) {u[i] = new double [N];}   
+        double fi=0;  
+        int i1=0,j1=0;
+ do
+ {  
+     m=0;
+     s=0;
+     for(int i=0;i<N;i++){
+      for(int j=0;j<N;j++) {if ((abs(A[i][j])>m)&&(i!=j)) {m=abs(A[i][j]);i1=i;j1=j;}}}
+      fi=0.5*(atan(2*m/(A[i1][i1]-A[j1][j1])));
+      if (A[i1][i1]==A[j1][j1]) fi=3.14/4;
+    for(int i=0;i<N;i++)
+    for(int j=0;j<N;j++)
+    {u[i][i]=1;if (i!=j) u[i][j]=0;}
+    u[j1][i1]=sin(fi);u[i1][i1]=cos(fi);u[j1][j1]=cos(fi);u[i1][j1]=-sin(fi);
+    A=um1(um1(t(u),A),u);
+    for(int i=0;i<N;i++)
+     for(int j=1;j<N;j++)
+    if ((i!=j)&&(j>i)) s+=A[i][j]*A[i][j];
+    s=sqrt(s);
+  } while (s>e);	
+}
