@@ -264,5 +264,6 @@ void cheboksarovv::lab8()
      for(int j=1;j<N;j++)
     if ((i!=j)&&(j>i)) s+=A[i][j]*A[i][j];
     s=sqrt(s);
-  } while (s>e);	
+  } while (s>e);
+  for(int i=0;i<N;i++) x[i]=A[i][i];
 }
