@@ -237,7 +237,61 @@ void ploduhindm::lab6()
 /**
  * Один из градиентных методов
  */
+ double ploduhindm::mskl(double *a, double *b)
+{
+    double x=0;
+    for (int i=0; i<N; i++)
+        x+=a[i]*b[i];
+    return x;
+}
+double* ploduhindm::mvect(double **a, double *b)
+{
+     double *x = new double [N];
+     double m=0;
+     for (int i=0; i<N; i++)
+        {
+            for (int j=0; j<N; j++)
+                m+=a[i][j]*b[j];
+            x[i]=m;
+            m=0;
+        }
+    return x;
+}
+double* ploduhindm::subsvect(double *a, double *b)
+{
+     double *x = new double [N];
+     for (int i=0; i<N; i++)
+        x[i]=a[i]-b[i];
+    return x;
+}
+double* ploduhindm::numvect(double *a, double m)
+{
+     double *x = new double [N];
+     for (int i=0; i<N; i++)
+        x[i]=a[i]*m;
+    return x;
+}
 void ploduhindm::lab7()
 {
-
+    double eps = 0.0001;
+    double* p = new double[N];
+    double* r = new double[N];
+	double norm,t;
+	for (int i=0; i<N; i++)
+    {
+        x[i]=0;
+        p[i]=0;
+    }
+    do {
+        r=subsvect(mvect(A,x),b);
+        t=mskl(r,r)/mskl(mvect(A,r),r);
+        p=subsvect(p,numvect(r,t));
+        norm = fabs(x[0] - p[0]);
+		for (int h = 0; h < N; h++)
+        {
+			if (fabs(x[h] - p[h]) > norm)
+				norm = fabs(x[h] - p[h]);
+			x[h] = p[h];
+		}
+    } while (norm>eps);
 }
