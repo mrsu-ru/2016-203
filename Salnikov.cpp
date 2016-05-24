@@ -324,7 +324,6 @@ void Salnikov::lab7()
         tau = sum(multiplication(discrepancy, discrepancy))/sum(multiplication(multiplication(discrepancy, A), discrepancy));
         if (tau != tau)
             tau = 0.0000000001;
-        std::cout << tau << "!!!!!!!!\n";
 
         for (int i = 0; i < N; ++i) {
             temp[i] = discrepancy[i]*tau;
