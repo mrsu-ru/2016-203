@@ -32,5 +32,11 @@ class Salnikov: public lab
 	/**
 	* Один из градиентных методов
 	*/
+	double **multiplication(double **a, double **b);
+	double **multiplication(double **a, double *b);
+	double *multiplication(double *a, double **b);
+	double *multiplication(double *a, double *b);
+	double **transposition(double **a);
+	double sum(double *a);
 	virtual void lab7();
 };
