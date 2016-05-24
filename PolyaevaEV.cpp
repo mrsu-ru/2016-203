@@ -95,6 +95,22 @@ void PolyaevaEV::lab3()
       b[i] = (b[i] - temp) / A[i][i];
   }
 
+
+      for (int j = 0; j < N; j++)
+      {
+          if (j < i) A[i][j] = 0;
+          else if (i == j)  continue;
+          else A[i][j] = (A[i][j] - temp2) / A[i][i];
+      }
+  }
+
+  for (int i = 0; i < N; i++)
+  {
+      temp = 0;
+      for (int k = 0; k < i; k++) temp = temp + A[k][i] * b[k];
+      b[i] = (b[i] - temp) / A[i][i];
+  }
+
   for (int k = N-1; k >= 0; k--)
   {
       double res = 0;
@@ -110,6 +126,15 @@ void PolyaevaEV::lab4()
 {
     double* AA = new double[N];
     double* B = new double[N];
+
+	  AA[0] = A[0][1]/(-A[0][0]);
+    B[0] = b[0]/A[0][0];
+
+    for(int i=1; i<N; i++)
+    {
+        AA[i] = A[i][i+1]/(-A[i][i-1]*AA[i-1]-A[i][i]);
+        B[i] = (-b[i] + A[i][i-1]*B[i-1])/(-A[i][i-1]*AA[i-1]-A[i][i]);
+    }
 
 	  AA[0] = A[0][1]/(-A[0][0]);
     B[0] = b[0]/A[0][0];
@@ -149,6 +174,16 @@ void PolyaevaEV::lab5()
 		}
 
         norm = fabs(x[0] - Y[0]);
+
+		for (int i = 0; i < N; i++)
+		{
+			if (fabs(x[i] - Y[i]) > norm) norm = fabs(x[i] - Y[i]);
+			x[i] = Y[i];
+		}
+	} while (norm > eps);
+
+	delete[] Y;
+}
 
 		for (int i = 0; i < N; i++)
 		{
