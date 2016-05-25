@@ -179,8 +179,6 @@ void karchiganovaf::lab6()
 		xlast=xnext;
 	} while (delta_x>eps);
 	x=xlast;
-
-	for (int i=0; i<N; i++) cout<<"x["<<i<<"]="<<x[i]<<endl;
 }
 
 
