@@ -28,12 +28,31 @@ class ivanovii : public lab
    */
   virtual void lab6();
   /**
-   * Один из градиентных методов
+   * Один из градиентных методов(метод наискорейшего спуска)
    */
   virtual void lab7();
-  virtual void mult( double** M,  double* v,  double* r);
-  virtual void multnum( double a,  double* v,  double* r);
+  /**
+   * Умножение матрицы на вектор
+   */
+  virtual void multiplication( double** M,  double* v,  double* r);
+  /**
+   * Умножение вектора на число
+   */
+  virtual void multiplication( double a,  double* v,  double* r);
+  /**
+   * Умножение матрицы на матрицу
+   */
+  virtual double** multiplication(double **a, double **b)
+  /**
+   * Скалярное произведение векторов
+   */
   virtual double scale( double* v1,  double* v2);
+  /**
+   * Разность векторов
+   */
   virtual void subtr( double* v1,  double* v2,  double* r);
-
+  /**
+   * Метод вращения
+   */
+  virtual void lab8();
 };
