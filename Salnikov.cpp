@@ -343,7 +343,71 @@ void Salnikov::lab7()
     } while (norma > e);
 
     delete[] approximate, discrepancy, temp;
+}
 
+
+void Salnikov::lab8()
+{
+    double norm, eps = 0.0001;
+    double** M = new double*[N];
+    double** MT = new double*[N];
+    double** AA = new double*[N];
+
+    for (int i = 0; i < N; i++) {
+        AA[i] = new double[N];
+        x[i] = 0;
+        for (int j = 0; j < N; j++) AA[i][j] = 0;
+    }
+
+    do {
+        std::pair<int, int> mec;
+        mec.first = 0;
+        mec.second = 1;
+        double max_el = abs(A[mec.first][mec.second]);
+
+        for (int i = 0; i < N; i++)
+            for (int j = i+1; j < N; j++)
+                if (abs(A[i][j]) >= max_el) { 
+                    max_el = abs(A[i][j]); 
+                    mec.first = i;
+                    mec.second = j;
+                }
+
+        double fi = atan(2*max_el/(A[mec.first][mec.first] - A[mec.second][mec.second]))/2;
+
+        for (int i = 0; i < N; i++) {
+            M[i] = new double[N]; 
+            MT[i] = new double[N];
+            for (int j = 0; j < N; j++) { 
+                MT[i][j] = 0; 
+                if(i == j) 
+                    M[i][j] = 1; 
+                else 
+                    M[i][j] = 0; 
+            };
+        }
+
+        M[mec.first][mec.first] = M[mec.second][mec.second] = cos(fi);
+        M[mec.first][mec.second] = -sin(fi);
+        M[mec.second][mec.first] = sin(fi);
+
+        MT = transposition(M);
+        AA = multiplication(MT, A);
+        A = multiplication(AA, M);
+
+    norm = 0;
+    for (int i = 0; i < N; i++)
+        for (int j = i+1; j < N; j++) 
+            norm += pow(A[i][j], 2.0);
+
+    } while (sqrt(norm) > eps);
+
+    for(int i = 0; i < N; i++) 
+        x[i] = A[i][i];
+
+    delete[] M;
+    delete[] MT;
+    delete[] AA;
 }
 
 

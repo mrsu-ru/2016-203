@@ -2,6 +2,7 @@
 #include "lab.h"
 #include <cmath>
 #include <algorithm>
+#include <utility> 
 
 class Salnikov: public lab
 {
@@ -39,4 +40,6 @@ class Salnikov: public lab
 	double **transposition(double **a);
 	double sum(double *a);
 	virtual void lab7();
+
+	virtual void lab8();
 };
