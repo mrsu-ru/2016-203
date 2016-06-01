@@ -28,9 +28,31 @@ class nazarovvi : public lab
    */
   virtual void lab6();
   /**
-   * ���� �� ����������� �������
+   * ���� �� ����������� �������(����� ������������� ������)
    */
   virtual void lab7();
-
-  int maxElemNum(long double* a, int c);
+  /**
+   * ��������� ������� �� ������
+   */
+  virtual void multiplication( double** M,  double* v,  double* r);
+  /**
+   * ��������� ������� �� �����
+   */
+  virtual void multiplication( double a,  double* v,  double* r);
+  /**
+   * ��������� ������� �� �������
+   */
+  virtual double** multiplication(double **a, double **b)
+  /**
+   * ��������� ������������ ��������
+   */
+  virtual double scale( double* v1,  double* v2);
+  /**
+   * �������� ��������
+   */
+  virtual void subtr( double* v1,  double* v2,  double* r);
+  /**
+   * ����� ��������
+   */
+  virtual void lab8();
 };
