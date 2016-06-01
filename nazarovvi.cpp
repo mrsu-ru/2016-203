@@ -1,5 +1,5 @@
 #include "nazarovvi.h"
-
+#include "cmath"
 /**
  * ����� ������
  */
@@ -240,10 +240,166 @@ void nazarovvi::lab6()
 
 
 
+void nazarovvi::multiplication(double** M, double* v, double* r)
+{
+    double s=0;
+    for (int i=0; i < N; i++)
+    {
+        for (int j=0; j < N; j++)
+                s += M[i][j]*v[j];
+        r[i] = s;
+        s = 0;
+    }
+};
+void nazarovvi::multiplication(double a, double* v, double* r)
+{
+    for (int i=0; i < N; i++)
+        r[i] = a*v[i];
+};
+
+double nazarovvi::scale(double* v1, double* v2)
+{
+    long double result = 0;
+    for (int i=0; i < N; i++)
+        result += v1[i]*v2[i];
+    return result;
+}
+
+
+void nazarovvi::subtr(double* v1, double* v2, double* r)
+{
+    for (int i=0; i < N; i++)
+        r[i] = v1[i]-v2[i];
+}
+
 /**
  * ���� �� ����������� �������
  */
 void nazarovvi::lab7()
 {
+	double eps = 0.00000001;
+    double* y = new double[N];
+    double* r = new double[N];
+    double* buff = new double[N];
+    double t=0;
+    double norm=0;
 
+    for (int i=0; i<N; i++)
+    {
+        y[i] = 0;
+        r[i] = 0;
+        buff[i] = 0;
+    }
+
+    do
+    {
+		multiplication(A, y, buff);
+        subtr(buff, b, r);
+        multiplication(A, r, buff);
+        t=scale(r, r)/scale(buff, r);
+        multiplication(t, r, buff);
+        subtr(x, buff, y);
+        norm = abs(x[0]-y[0]);
+        for (int i = 0; i < N; i++)
+        {
+			if (abs(x[i] - y[i]) > norm)
+				norm = abs(x[i] - y[i]);
+            x[i] = y[i];
+		}
+    }while(norm >= eps);
+    delete[] r;
+    delete[] y;
+    delete[] buff;
+};
+
+double** nazarovvi::multiplication(double **a, double **b)
+ {
+    double **c = new double* [N];
+    double s;
+    for (int i=0; i<N; i++)
+        c[i] = new double [N];
+    for(int i=0; i<N; i++) {
+        for(int j=0; j<N; j++) {
+             s = 0;
+             for(int k=0; k<N; k++) {
+                 s += a[i][k]*b[k][j];
+             }
+             c[i][j] = s;
+        }
+     }
+   return c;
 }
+/**
+ * ������� ������ �������� ����������� ��������(����� ��������)
+ */
+void nazarovvi::lab8()
+{
+	double eps = 1.0e-15;
+
+	double** U = new double*[N];
+    for (int i=0; i<N; i++)
+        U[i] = new double[N];
+    double** Ut = new double*[N];
+    for (int i=0; i<N; i++)
+        Ut[i] = new double[N];
+	double** L = new double*[N];
+    for (int i=0; i<N; i++)
+        L[i] = new double[N];
+	double phi = 0, t = 0;
+    int maxi, maxj;
+	for(int i=0; i < N; i++)
+        for(int j=0; j < N; j++)
+            L[i][j] = A[i][j];
+	do {
+		phi = 0;
+		t = 0;
+		maxi = 0; maxj = 1;
+		//looking for max elem
+		for(int i=0; i < N; i++)
+			for(int j=0; j < i; j++)
+				if((i!=j)&&(abs(L[i][j]) >= abs(L[maxi][maxj])))
+					{
+						maxi = i;
+						maxj = j;
+					}
+		for(int i=0; i < N; i++)
+			for(int j=0; j < N; j++)
+				if(i == j) {
+					U[i][j] = 1;
+					Ut[i][j] = 1;
+				}
+				else {
+					U[i][j] = 0;
+					Ut[i][j] = 0;
+				}
+		//calculating angle
+		phi = atan(2*L[maxi][maxj]/(L[maxi][maxi]-L[maxj][maxj]))/2;
+
+		U[maxi][maxj] = - sin(phi);
+		U[maxj][maxi] = sin(phi);
+		U[maxi][maxi] = cos(phi);
+		U[maxj][maxj] = cos(phi);
+
+		Ut[maxi][maxj] = sin(phi);
+		Ut[maxj][maxi] = -sin(phi);
+		Ut[maxi][maxi] = cos(phi);
+		Ut[maxj][maxj] = cos(phi);
+
+		L = multiplication(multiplication(Ut,L),U);
+		for(int i=0; i < N; i++)
+			for(int j=0; j < i; j++)
+				t += L[i][j]*L[i][j];
+	}while(sqrt(t) >= eps);
+	for(int i=0; i < N; i++)
+        x[i] = L[i][i];
+	for(int i=0; i < N; i++)
+	{
+		delete[] L[i];
+		delete[] U[i];
+		delete[] Ut[i];
+	}
+	delete[] L;
+	delete[] U;
+	delete[] Ut;
+
+};
