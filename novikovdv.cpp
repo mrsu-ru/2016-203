@@ -196,7 +196,61 @@ void novikovdv::lab6()
 /**
  * Один из градиентных методов
  */
+double novikovdv::sklr(double *x, double *y)
+{
+	double s = 0;
+	for (int i = 0; i<N; i++)
+		s += x[i] * y[i];
+	return(s);
+}
+double* novikovdv::vichvect(double *x, double *y)
+{
+	double *t = new double[N];
+	for (int i = 0; i<N; i++)
+		t[i] = x[i] - y[i];
+	return t;
+}
+double* novikovdv::matrvect(double **A, double *x)
+{
+	double *t = new double[N];
+	for (int j = 0; j<N; j++)
+		t[j] = 0;
+	for (int i = 0; i<N; i++){
+		for (int j = 0; j<N; j++)
+			t[i] = t[i] + A[i][j] * x[j];
+	}
+	return (t);
+}
+
+
+double* novikovdv::mult(double *A, double p)
+{
+	double *t = new double[N];
+	for (int i = 0; i<N; i++)
+		t[i] = A[i] * p;
+	return (t);
+}
+
+
+
 void novikovdv::lab7()
 {
+    double tau, norm = 0, eps = 0.001;
+	double *r = new double[N];
+	for (int i = 0; i<N; i++)
+	{
+		x[i] = 0;
+	}
 
+	do{
+		r = vichvect(b, matrvect(A, x));
+		tau = -(sklr(matrvect(A, r), r) / sklr(matrvect(A, r), matrvect(A, r)));
+		x=vichvect(x, mult(r, tau));
+
+		for (int i = 0; i<N; i++)
+			norm += r[i] * r[i];
+		norm = fabs(norm) / N;
+
+	} while (norm > eps);
+	delete[] r;
 }
