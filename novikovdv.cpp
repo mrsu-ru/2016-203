@@ -33,7 +33,6 @@ void novikovdv::lab1()
  */
 void novikovdv::lab2()
 {
-
     double t=0;
     for(int k=0; k<N; k++)
         {
@@ -48,8 +47,8 @@ void novikovdv::lab2()
                         }
                 }
              for (int j=0; j<N; j++)
-                std::swap(A[k][j], A[max_id][j]);
-                std::swap(b[k], b[max_id]);
+                swap(A[k][j], A[max_id][j]);
+                swap(b[k], b[max_id]);
 
 
         for(int i=k+1; i<N; i++)
@@ -178,6 +177,31 @@ void novikovdv::lab4()
  */
 void novikovdv::lab5()
 {
+    double* t = new double[N];
+    double eps = 0.001;
+	double norm;
+    do
+        {
+		for (int i = 0; i < N; i++)
+        {
+			t[i] = b[i];
+			for (int j = 0; j < N; j++)
+			{
+				if (i != j)
+					t[i] -= A[i][j] * x[j];
+			}
+			t[i] = t[i] / A[i][i];
+		}
+        norm = abs(x[0] - t[0]);
+
+		for (int k = 0; k < N; k++)
+        {
+			if (abs(x[k] - t[k]) > norm)
+				norm = abs(x[k] - t[k]);
+			x[k] = t[k];
+		}
+	} while (norm > eps);
+	delete[] t;
 
 }
 
@@ -188,9 +212,35 @@ void novikovdv::lab5()
  */
 void novikovdv::lab6()
 {
+    double eps = 0.001;
+    double* t = new double[N];
+    double norm = 0;
 
+    for (int i = 0; i < N; i++)
+			x[i] = 0;
+	do
+	{
+		for (int i = 0; i < N; i++)
+			t[i] = x[i];
+
+		for (int i = 0; i < N; i++)
+		{
+			double v = 0;
+			for (int j = 0; j < i; j++)
+				v += (A[i][j] * x[j]);
+
+			for (int j = i + 1; j < N; j++)
+				v += (A[i][j] * x[j]);
+			x[i] = (b[i] - v) / A[i][i];
+
+			norm=0;
+			for (int i = 0; i < N; i++)
+				norm += (x[i] - t[i])*(x[i] - t[i]);
+		}
+	} while (sqrt(norm) >= eps);
+
+	delete[] t;
 }
-
 
 
 /**
@@ -254,3 +304,4 @@ void novikovdv::lab7()
 	} while (norm > eps);
 	delete[] r;
 }
+
