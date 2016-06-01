@@ -205,6 +205,7 @@ double scalar_of_vectors(double* v1, double* v2)
  */
 void karchiganovaf::lab7()
 {
+	double eps=0.00001; // Точность нормы разности
 	double Tau=0;
 	double sharpness=0;
 	double* xlast=new double[N];
