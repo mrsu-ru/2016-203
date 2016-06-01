@@ -195,7 +195,7 @@ void Salnikov::lab6() {
     double eps = 0.0001;
     double* y = new double[N];
     double norma = 0;
-    
+     
     for (int i = 0; i < N; i++)
         x[i] = 0; //текущее решение
     do
@@ -224,6 +224,199 @@ void Salnikov::lab6() {
     delete[] y;
 }
 
-void Salnikov::lab7() {
+double **Salnikov::multiplication(double **a, double **b) 
+{
+    double **result;
+    result = new double*[N];
+    for (int i = 0; i < N; i++) {
+        result[i] = new double[N];
+        for (int j = 0; j < N; j++){
+            result[i][j] = 0;
+            for(int k = 0; k < N; k++)
+                result[i][j] += a[i][k] *b[k][j];
+        }
+    }
 
+    return result;
 }
+
+double **Salnikov::multiplication(double **a, double *b) 
+{
+    double **result;
+    result = new double*[N];
+    for (int i = 0; i < N; i++) {
+        result[i] = new double[N];
+        for (int j = 0; j < N; ++j)
+            result[i][j] += a[i][j] * b[j];
+    }
+
+    return result;
+}
+
+double *Salnikov::multiplication(double *a, double **b) 
+{
+    double *result;
+    result = new double[N];
+    for (int i = 0; i < N; i++) {
+        result[i] = 0;
+        for (int j = 0; j < N; ++j)
+            result[i] += b[i][j] * a[j];
+    }
+
+    return result;
+}
+
+double **Salnikov::transposition(double **a) 
+{
+    double **result;
+    result = new double*[N];
+    for (int i = 0; i < N; ++i) {
+        result[i] = new double[N];
+        for (int j = 0; j < N; ++j) {
+            result[i][j] = a[j][i];
+        }
+    }
+    return result;
+}
+
+double *Salnikov::multiplication(double *a, double *b) 
+{
+    double *result;
+    result = new double[N];
+    for (int i = 0; i < N; ++i) {
+        result[i] = a[i] + b[i];
+    }
+    return result;
+}
+
+double Salnikov::sum(double *a)
+{
+    double sum = 0;
+    for (int i = 0; i < N; ++i) {
+        sum += a[i];
+    }
+    return sum;
+}
+
+void Salnikov::lab7() 
+{
+    double *approximate, *discrepancy; //вектор приближений и вектор невязок
+    approximate = new double[N];
+    discrepancy = new double[N];
+
+    for (int i = 0; i < N; ++i) {
+        x[i] = 0;
+        approximate[i] = 0;
+        discrepancy[i] = 0;
+    }
+
+    double e = 0.00001, norma = 1;
+    double *temp;
+    temp = new double[N];
+
+    do {
+        temp = multiplication(x, A);
+        for (int i = 0; i < N; ++i) {
+            discrepancy[i] = (temp[i] - x[i]);
+        }
+
+        double tau;
+        tau = sum(multiplication(discrepancy, discrepancy))/sum(multiplication(multiplication(discrepancy, A), discrepancy));
+        if (tau != tau)
+            tau = 0.0000000001;
+
+        for (int i = 0; i < N; ++i) {
+            temp[i] = discrepancy[i]*tau;
+        }
+        for (int i = 0; i < N; ++i) {
+            approximate[i] = (approximate[i] - temp[i]);
+        }
+
+        norma = abs(x[0] - approximate[0]);
+        for (int i = 0; i < N; ++i) {
+            double ttmp = abs(x[i] - approximate[i]);
+            if (ttmp > norma)
+                norma = ttmp;
+            x[i] = approximate[i];
+        }
+    } while (norma > e);
+
+    delete[] approximate, discrepancy, temp;
+}
+
+
+void Salnikov::lab8()
+{
+    
+    //redefine matrix A and b	
+    double norm, eps = 0.0001;
+    double** M = new double*[N];
+    double** MT = new double*[N];
+    double** AA = new double*[N];
+
+    for (int i = 0; i < N; i++) {
+        AA[i] = new double[N];
+        x[i] = 0;
+        for (int j = 0; j < N; j++) AA[i][j] = 0;
+    }
+
+    do {
+        std::pair<int, int> mec;
+        mec.first = 0;
+        mec.second = 1;
+        double max_el = abs(A[mec.first][mec.second]);
+
+        for (int i = 0; i < N; i++)
+            for (int j = i+1; j < N; j++)
+                if (abs(A[i][j]) >= max_el) { 
+                    max_el = abs(A[i][j]); 
+                    mec.first = i;
+                    mec.second = j;
+                }
+
+        double fi = atan(2*max_el/(A[mec.first][mec.first] - A[mec.second][mec.second]))/2;
+
+        for (int i = 0; i < N; i++) {
+            M[i] = new double[N]; 
+            MT[i] = new double[N];
+            for (int j = 0; j < N; j++) { 
+                MT[i][j] = 0; 
+                if(i == j) 
+                    M[i][j] = 1; 
+                else 
+                    M[i][j] = 0; 
+            };
+        }
+
+        M[mec.first][mec.first] = M[mec.second][mec.second] = cos(fi);
+        M[mec.first][mec.second] = -sin(fi);
+        M[mec.second][mec.first] = sin(fi);
+
+        MT = transposition(M);
+        AA = multiplication(MT, A);
+        A = multiplication(AA, M);
+
+    norm = 0;
+    for (int i = 0; i < N; i++)
+        for (int j = i+1; j < N; j++) 
+            norm += pow(A[i][j], 2.0);
+
+    } while (sqrt(norm) > eps);
+
+    for(int i = 0; i < N; i++) 
+        x[i] = A[i][i];
+
+    delete[] M;
+    delete[] MT;
+    delete[] AA;
+}
+
+
+
+
+
+
+
+
+
+

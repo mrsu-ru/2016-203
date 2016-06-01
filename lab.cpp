@@ -59,6 +59,7 @@ void lab::run(int lab_number)
         case 5: this->lab5(); break;
         case 6: this->lab6(); break;
         case 7: this->lab7(); break;
+        case 8: this->lab8(); break;
     }
 }
 
