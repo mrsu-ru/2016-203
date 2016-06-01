@@ -1,5 +1,8 @@
 #include "karchiganovaf.h"
 
+#define max(a,b)  (a)>(b)?(a):(b)
+
+
 std::string karchiganovaf::get_name()
 {
   return std::string("Карчиганов Алексей Федорович");
@@ -186,7 +189,7 @@ void karchiganovaf::lab6()
 	x=xlast;
 }
 
-double* Matrix_on_vector(double **M, double *V)
+double* karchiganovaf::Matrix_on_vector(double **M, double *V)
 {
 	double* result=new double[N];
 	for (int i=0; i<N; i++)
@@ -198,7 +201,7 @@ double* Matrix_on_vector(double **M, double *V)
 	return result;
 }
 
-double scalar_of_vectors(double* v1, double* v2)
+double karchiganovaf::scalar_of_vectors(double* v1, double* v2)
 {
 	double result=0;
 	for (int i=0; i<N; i++) result+=(v1[i]*v2[i]);
@@ -231,7 +234,7 @@ void karchiganovaf::lab7()
 		double temp2=scalar_of_vectors(Ar, r);
 		if (temp2==0) break;
 		Tau=temp1/temp2;
-		cout<<Tau<<endl;
+	//	cout<<Tau<<endl;
 		delete[] Ar;
 		for (int i=0; i<N; i++) xnext[i]=xlast[i]-Tau*r[i];
 		sharpness=0;
