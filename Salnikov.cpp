@@ -347,6 +347,8 @@ void Salnikov::lab7()
 
 void Salnikov::lab8()
 {
+    
+    //redefine matrix A and b	
     double norm, eps = 0.0001;
     double** M = new double*[N];
     double** MT = new double*[N];
