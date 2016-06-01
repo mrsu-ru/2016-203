@@ -42,7 +42,7 @@ class nazarovvi : public lab
   /**
    * ��������� ������� �� �������
    */
-  virtual double** multiplication(double **a, double **b)
+  virtual double** multiplication(double **a, double **b);
   /**
    * ��������� ������������ ��������
    */

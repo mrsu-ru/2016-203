@@ -240,7 +240,7 @@ void nazarovvi::lab6()
 
 
 
-void multiplication(long double** M, long double* v, long double* r)
+void nazarovvi::multiplication(double** M, double* v, double* r)
 {
     double s=0;
     for (int i=0; i < N; i++)
@@ -251,13 +251,13 @@ void multiplication(long double** M, long double* v, long double* r)
         s = 0;
     }
 };
-void multiplication(long double a, long double* v, long double* r)
+void nazarovvi::multiplication(double a, double* v, double* r)
 {
     for (int i=0; i < N; i++)
         r[i] = a*v[i];
 };
 
-long double scale(long double* v1, long double* v2)
+double nazarovvi::scale(double* v1, double* v2)
 {
     long double result = 0;
     for (int i=0; i < N; i++)
@@ -266,7 +266,7 @@ long double scale(long double* v1, long double* v2)
 }
 
 
-void subtr(long double* v1, long double* v2, long double* r)
+void nazarovvi::subtr(double* v1, double* v2, double* r)
 {
     for (int i=0; i < N; i++)
         r[i] = v1[i]-v2[i];
@@ -312,7 +312,7 @@ void nazarovvi::lab7()
     delete[] buff;
 };
 
-double** multiplication(double **a, double **b)
+double** nazarovvi::multiplication(double **a, double **b)
  {
     double **c = new double* [N];
     double s;
@@ -330,11 +330,11 @@ double** multiplication(double **a, double **b)
    return c;
 }
 /**
- * Решение полной проблемы собственных значений(Метод вращения)
+ * пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ(пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ)
  */
 void nazarovvi::lab8()
 {
-	double eps = 0.00000001;
+	double eps = 1.0e-15;
 
 	double** U = new double*[N];
     for (int i=0; i<N; i++)
@@ -403,7 +403,3 @@ void nazarovvi::lab8()
 	delete[] Ut;
 
 };
-
-
-
-
