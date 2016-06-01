@@ -325,26 +325,32 @@ double** ploduhindm::transMatr(double **a)
 }
 void ploduhindm::lab8()
 {
-    double eps=0.001;
-    double amax,f=0,s;
+    double **M = new double* [N];
+    for (int i=0; i<N; i++)
+         M[i] = new double [N];
+    for (int i=0; i<N; i++)
+       for (int j=0; j<N; j++)
+            M[i][j]=A[i][j];
+    double eps=0.00001;
+    double mmax,f=0,s;
     int imax=0,jmax=0;
     double **U = new double* [N];
         for (int i=0; i<N; i++)
          U[i] = new double [N];
      do
      {
-        amax=0;
+        mmax=0;
         s=0;
         for(int i=0;i<N;i++)
           for(int j=0;j<N;j++)
-            if ((abs(A[i][j])>amax)&&(i!=j))
+            if ((abs(M[i][j])>mmax)&&(i!=j))
             {
-                amax=abs(A[i][j]);
+                mmax=abs(M[i][j]);
                 imax=i;
                 jmax=j;
             }
-        if (A[imax][imax]==A[jmax][jmax]) f=M_PI/4; else
-            f=0.5*(atan(2*amax/(A[imax][imax]-A[jmax][jmax])));
+        if (M[imax][imax]==M[jmax][jmax]) f=M_PI/4; else
+            f=0.5*(atan(2*mmax/(M[imax][imax]-M[jmax][jmax])));
         for(int i=0;i<N;i++)
             for(int j=0;j<N;j++)
             {
@@ -355,12 +361,12 @@ void ploduhindm::lab8()
         U[imax][imax]=cos(f);
         U[jmax][jmax]=cos(f);
         U[imax][jmax]=-sin(f);
-        A=multMatr(multMatr(transMatr(U),A),U);
+        M=multMatr(multMatr(transMatr(U),M),U);
         for(int i=0;i<N;i++)
             for(int j=i+1;j<N;j++)
-                    s+=A[i][j]*A[i][j];
+                    s+=M[i][j]*M[i][j];
         s=sqrt(s);
     } while (s>eps);
     for(int i=0;i<N;i++)
-        x[i]=A[i][i];
+        x[i]=M[i][i];
 }
