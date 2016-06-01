@@ -162,15 +162,84 @@ void karchiganovaf::lab5()
  */
 void karchiganovaf::lab6()
 {
-
+	double eps=0.00001; // Точность нормы разности
+	double* xlast = new double[N];
+	for (int i=0; i<N; i++) xlast[i]=0;
+	double* xnext;
+	double delta_x;
+	do
+	{
+		xnext=new double[N];
+		delta_x=0;
+		for (int i=0; i<N; i++)
+		{
+			xnext[i]=b[i];
+			for (int k=0; k<i; k++) xnext[i]-=A[i][k]*xnext[k];
+			for (int k=i+1; k<N; k++) xnext[i]-=A[i][k]*xlast[k];
+			xnext[i]/=A[i][i];
+			delta_x+=pow(xnext[i]-xlast[i], 2);
+		}
+		delta_x=sqrt(delta_x);
+		delete[] xlast;
+		xlast=xnext;
+	} while (delta_x>eps);
+	x=xlast;
 }
 
+double* Matrix_on_vector(double **M, double *V)
+{
+	double* result=new double[N];
+	for (int i=0; i<N; i++)
+	{
+		result[i]=0;
+		for (int j=0; j<N; j++)
+			result[i]+=M[i][j]*V[j];
+	}
+	return result;
+}
 
+double scalar_of_vectors(double* v1, double* v2)
+{
+	double result=0;
+	for (int i=0; i<N; i++) result+=(v1[i]*v2[i]);
+	return result;
+}
 
 /**
  * Один из градиентных методов
  */
 void karchiganovaf::lab7()
 {
-
+	double eps=0.00001; // Точность нормы разности
+	double Tau=0;
+	double sharpness=0;
+	double* xlast=new double[N];
+	for (int i=0; i<N; i++) xlast[i]=0;
+	double* xnext;
+	double *r=new double[N];
+	double* Ax;
+	double* Ar;
+	do
+	{
+		xnext=new double[N];
+		Ax=Matrix_on_vector(A,xlast);
+		for (int i=0; i<N; i++) r[i]=Ax[i]-b[i];
+		delete[] Ax;
+		Ar=Matrix_on_vector(A, r);
+		Tau=0;
+		double temp1=scalar_of_vectors(r, r);
+		double temp2=scalar_of_vectors(Ar, r);
+		if (temp2==0) break;
+		Tau=temp1/temp2;
+		cout<<Tau<<endl;
+		delete[] Ar;
+		for (int i=0; i<N; i++) xnext[i]=xlast[i]-Tau*r[i];
+		sharpness=0;
+		for (int i=0; i<N; i++) sharpness=max(sharpness,abs(xnext[i]-xlast[i]));
+		delete[] xlast;
+		xlast=xnext;
+	}
+	while (sharpness>=eps);
+	x=xlast;
+	return;
 }
