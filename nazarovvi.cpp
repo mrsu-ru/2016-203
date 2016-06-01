@@ -1,5 +1,5 @@
 #include "nazarovvi.h"
-
+#include "cmath"
 /**
  * Метод Гаусса
  */
