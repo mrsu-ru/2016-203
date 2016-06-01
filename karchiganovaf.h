@@ -34,5 +34,6 @@ class karchiganovaf: public lab
 
 
     virtual std::string get_name();
-
+double scalar_of_vectors(double* v1, double* v2);
+double* Matrix_on_vector(double **M, double *V);
 };
