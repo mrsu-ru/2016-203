@@ -277,6 +277,7 @@ void subtr(long double* v1, long double* v2, long double* r)
  */
 void nazarovvi::lab7()
 {
+	double eps = 0.00000001;
     double* y = new double[N];
     double* r = new double[N];
     double* buff = new double[N];
@@ -333,6 +334,8 @@ double** multiplication(double **a, double **b)
  */
 void nazarovvi::lab8()
 {
+	double eps = 0.00000001;
+
 	double** U = new double*[N];
     for (int i=0; i<N; i++)
         U[i] = new double[N];
