@@ -124,16 +124,16 @@ void sadovnikovev::lab4()
 {
  double* P=new double[N];
  double* Q=new double[N];
-    P[0]=-A[0][1]/A[0][0];
-    Q[0]=b[0]/A[0][0];
+    Q[0]=-A[0][1]/A[0][0];
+    P[0]=b[0]/A[0][0];
    for(int i=1;i<N;i++)
     {
      P[i]=-A[i][i+1]/(A[i][i-1]*P[i-1]+A[i][i]);
      Q[i]=(b[i]-A[i][i-1]*Q[i-1])/(A[i][i-1]*P[i-1]+A[i][i]);
     }
-    x[N-1] = Q[N-1];
+    x[N-1] = p[N-1];
     for(int i=N-1; i>=0; i--){
-     x[i] = P[i]*x[i+1]+Q[i];
+     x[i] = Q[i]*x[i+1]+P[i];
     };
       delete[] P;
       delete[] Q;
