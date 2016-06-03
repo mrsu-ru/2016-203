@@ -31,4 +31,12 @@ class novikovdv : public lab
    * Один из градиентных методов
    */
   virtual void lab7();
+
+
+  double sklr(double *x, double *y);
+  double* vichvect(double *x, double *y);
+  double* matrvect(double **A, double *x);
+  double* mult(double *A, double p);
+
+
 };
