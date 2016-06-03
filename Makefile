@@ -17,11 +17,12 @@ SOURCES= \
 				nazarovvi.cpp \
 				novikovdv.cpp	\
 				ploduhindm.cpp \
-				PolkinAV.cpp \
 				PolyaevaEV.cpp \
+				PolkinAV.cpp \
 				sadovnikovev.cpp \
 				Salnikov.cpp \
 				Samylkin.cpp \
+				Sidorov.cpp \
 				Suharev.cpp \
 				Sukhova.cpp \
 				timovkin.cpp \

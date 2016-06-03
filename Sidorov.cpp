@@ -11,22 +11,22 @@ void Sidorov::lab1()
   {
     for (int i = line; i < N; i++)
     {
-      coefficient = matrix[i][line-1] / matrix[line-1][line-1];
-      for (int j = line; j < N; j++)  
-        matrix[i][j] -= coefficient * matrix[line-1][j];
-        
+      coefficient = A[i][line-1] / A[line-1][line-1];
+      for (int j = line; j < N; j++)
+        A[i][j] -= coefficient * A[line-1][j];
+
       b[i] = b[i] - coefficient * b[line-1];
-    } 
-  } 
-   
+    }
+  }
+
   for (int i = N - 1; i >= 0; i--)
   {
     for (int j = i + 1; j < N; j++)
       b[i] = b[i] - A[i][j] * x[j];
-       
+
     x[i] = b[i] / A[i][i];
-  } 
- 
+  }
+
   return;
 }
 
@@ -34,7 +34,7 @@ void Sidorov::lab1()
 
 
 
-void Sidorov::lab2() 
+void Sidorov::lab2()
 {
 	double coefficient;
 	int max;
@@ -145,7 +145,7 @@ void Sidorov::lab4() {
   for(int i=N-1; i>=0; i--)
 	{
   	x[i] = k[i]*x[i+1]+k1[i];
-  }  
+  }
 }
 
 void Sidorov::lab5() {
