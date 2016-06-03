@@ -76,7 +76,22 @@ void Sidorov::lab3() {
 }
 
 void Sidorov::lab4() {
-  
+	double* k=new double[N];
+ 	double* k1=new double[N];
+
+  k[0]=-A[0][1]/A[0][0];
+  k1[0]=b[0]/A[0][0];
+
+  for(int i=1;i<N;i++)
+  {
+  	k[i]=-A[i][i+1]/(A[i][i-1]*k[i-1]+A[i][i]);
+   	k1[i]=(b[i]-A[i][i-1]*k1[i-1])/(A[i][i-1]*k[i-1]+A[i][i]);
+  }
+  x[N-1] = k1[N-1];
+  for(int i=N-1; i>=0; i--)
+	{
+  	x[i] = k[i]*x[i+1]+k1[i];
+  }  
 }
 
 void Sidorov::lab5() {
