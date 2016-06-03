@@ -7,7 +7,7 @@ void timovkin::lab1()
 {
 float c;
 for (int i = 0; i<N; i++)
- for (int k=i+1;k<N;k++) 
+ for (int k=i+1;k<N;k++)
  {
    c=A[k][i]/A[i][i];
    b[k]=b[k]-b[i]*c;
@@ -15,7 +15,7 @@ for (int i = 0; i<N; i++)
      A[k][j]=A[k][j]-A[i][j]*c;
  }
  for (int i = N-1; i>=0; i--)
- for (int k=i-1;k>=0;k--) 
+ for (int k=i-1;k>=0;k--)
  {
    c=A[k][i]/A[i][i];
    b[k]=b[k]-b[i]*c;
@@ -63,7 +63,7 @@ for (int k = 0; k<N; k++)
       for(int i=N-1; i>=0; i--)
 
       {s=0;
-          for(int j=i+1; j<=N; j++)
+          for(int j=i+1; j<N; j++)
              s=s+A[i][j]*x[j];
          x[i]=(b[i]-s)/(A[i][i]);
       }
@@ -76,7 +76,7 @@ void timovkin::lab3()
 {
 double** L = new double*[N];
   for (int i=0; i<N; i++)
-  L[i] = new double[N]; 
+  L[i] = new double[N];
   double* y = new double[N];
 
    for (int i=0; i<N; i++)
@@ -122,9 +122,9 @@ void timovkin::lab4()
 {
   double* k=new double[N];
  double* k1=new double[N];
-    k[0]=-A[0][1]/A[0][0];  
+    k[0]=-A[0][1]/A[0][0];
     k1[0]=b[0]/A[0][0];
-   for(int i=1;i<N;i++) 
+   for(int i=1;i<N;i++)
     {
      k[i]=-A[i][i+1]/(A[i][i-1]*k[i-1]+A[i][i]);
      k1[i]=(b[i]-A[i][i-1]*k1[i-1])/(A[i][i-1]*k[i-1]+A[i][i]);
@@ -144,7 +144,7 @@ void timovkin::lab4()
 /**
  * Ìåòîä ßêîáè
  */
-void ivanov::lab5()
+void timovkin::lab5()
 {
 
 }
@@ -154,7 +154,7 @@ void ivanov::lab5()
 /**
  * Ìåòîä Çåéäåëÿ
  */
-void ivanov::lab6()
+void timovkin::lab6()
 {
 
 }
@@ -164,7 +164,7 @@ void ivanov::lab6()
 /**
  * Îäèí èç ãðàäèåíòíûõ ìåòîäîâ
  */
-void ivanov::lab7()
+void timovkin::lab7()
 {
 
 }
