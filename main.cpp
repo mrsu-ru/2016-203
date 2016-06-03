@@ -7,6 +7,7 @@
 #include "godyaev.h"
 #include "karchiganovaf.h"
 #include "labushkinamn.h"
+#include "lamaikinai.h"
 #include "Levshtanoviv.h"
 #include "Lysov.h"
 #include "morozovns.h"
@@ -50,6 +51,9 @@ int main(int argc, char** argv)
   }
   else if (strcmp(argv[1], "labushkinamn") == 0) {
     l = new labushkinamn();
+  }
+  else if (strcmp(argv[1], "lamaikinai") == 0) {
+    l = new lamaikinai();
   }
   else if (strcmp(argv[1], "levshtanoviv") == 0) {
     l = new Levshtanoviv();

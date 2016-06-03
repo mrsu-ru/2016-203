@@ -9,6 +9,7 @@ SOURCES= \
 				Chucmarevaki.cpp \
 				godyaev.cpp \
 				karchiganovaf.cpp \
+				lamaikinai.cpp \
 				labushkinamn.cpp \
 				Levshtanoviv.cpp \
 				Lysov.cpp \
