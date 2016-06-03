@@ -160,7 +160,20 @@ for (int i=N-1;i>=0;i--)
  */
 void labushkinamn::lab4()
 {
-
+ double* alf=new double[N];
+ double* bt=new double[N];
+    alf[0]=-A[0][1]/A[0][0];
+    bt[0]=b[0]/A[0][0];
+   for(int i=1;i<N;i++)
+    {
+     alf[i]=-A[i][i+1]/(A[i][i-1]*alf[i-1]+A[i][i]);
+     bt[i]=(b[i]-A[i][i-1]*bt[i-1])/(A[i][i-1]*alf[i-1]+A[i][i]);
+    }
+    x[N-1] = bt[N-1];
+    for(int i=N-2; i>=0; i--)
+     x[i] = alf[i]*x[i+1]+bt[i];
+      delete[] alf;
+      delete[] bt;
 }
 
 

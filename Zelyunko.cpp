@@ -1,4 +1,4 @@
-#include "zelyunko.h"
+#include "Zelyunko.h"
 
 /**
  * Метод Гаусса
