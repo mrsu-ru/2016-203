@@ -31,4 +31,18 @@ class PolyaevaEV : public lab
    * Один из градиентных методов
    */
   virtual void lab7();
+
+
+  void zeroing(double *x);
+  double multiplication_of_vectors(double *x, double *y);
+
+  void difference(double* x, double *y, double *z);
+
+  double* multiplication_matrix_on_vector(double **A, double *y);
+  void transposition(double **a, double **result);
+
+ void multiplication(double **a, double **b, double **result);
+
+void lab8();
+
 };
