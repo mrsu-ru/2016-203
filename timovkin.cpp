@@ -7,7 +7,7 @@ void timovkin::lab1()
 {
 float c;
 for (int i = 0; i<N; i++)
- for (int k=i+1;k<N;k++) //занулили ниже главной диагонали
+ for (int k=i+1;k<N;k++) 
  {
    c=A[k][i]/A[i][i];
    b[k]=b[k]-b[i]*c;
@@ -15,7 +15,7 @@ for (int i = 0; i<N; i++)
      A[k][j]=A[k][j]-A[i][j]*c;
  }
  for (int i = N-1; i>=0; i--)
- for (int k=i-1;k>=0;k--) //занулили выше главной диагонли
+ for (int k=i-1;k>=0;k--) 
  {
    c=A[k][i]/A[i][i];
    b[k]=b[k]-b[i]*c;
@@ -122,9 +122,9 @@ void timovkin::lab4()
 {
   double* k=new double[N];
  double* k1=new double[N];
-    k[0]=-A[0][1]/A[0][0];  //начальные коэф k,k1
+    k[0]=-A[0][1]/A[0][0];  
     k1[0]=b[0]/A[0][0];
-   for(int i=1;i<N;i++) //в цикле высчитываем дальнейшие коэф
+   for(int i=1;i<N;i++) 
     {
      k[i]=-A[i][i+1]/(A[i][i-1]*k[i-1]+A[i][i]);
      k1[i]=(b[i]-A[i][i-1]*k1[i-1])/(A[i][i-1]*k[i-1]+A[i][i]);
