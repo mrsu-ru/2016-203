@@ -72,6 +72,60 @@ void Sidorov::lab2()
 }
 
 void Sidorov::lab3() {
+ double **L = new double*[N];
+	for (int i = 0; i<N; i++)
+		L[i] = new double[N];
+
+	double *y = new double[N];
+
+
+	for (int i = 0; i < N; i++)
+	{
+		x[i] = 0;
+		y[i] = 0;
+		for (int j = 0; j < N; j++)
+		{
+			L[i][j] = 0;
+		}
+	}
+
+	double t = 0;
+	for (int i = 0; i<N; i++)
+	{
+		for (int k = 0; k <= i - 1; k++)
+			t += L[i][k] * L[i][k];
+
+		L[i][i] = sqrt(A[i][i] - t);
+		t = 0;
+		for (int j = i + 1; j<N; j++)
+			{
+				for (int k = 0; k <= i - 1; k++)
+					t += L[i][k] * L[j][k];
+
+				L[j][i] = (A[i][j] - t) / L[i][i];
+				t = 0;
+			}
+	}
+
+
+	for (int i = 0; i<N; i++)
+	{
+		t = 0;
+		for (int j = 0; j<i; j++)
+			t += L[i][j] * y[j];
+
+		y[i] = (b[i] - t) / L[i][i];
+	}
+
+
+	for (int i = N - 1; i >= 0; i--)
+	{
+		t = 0;
+		for (int j = i + 1; j<N; j++)
+			t += L[j][i] * x[j];
+
+		x[i] = (y[i] - t) / L[i][i];
+	}
 
 }
 
