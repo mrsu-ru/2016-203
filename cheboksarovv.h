@@ -36,4 +36,7 @@ class cheboksarovv: public lab
   double uc(double *x, double *y);
   double* umc( double *x,double y);
   virtual void lab7();
+  double **t(double **x);
+  double **um1(double **x,double **y);
+  virtual void lab8();
 };

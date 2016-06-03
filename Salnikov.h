@@ -2,6 +2,7 @@
 #include "lab.h"
 #include <cmath>
 #include <algorithm>
+#include <utility> 
 
 class Salnikov: public lab
 {
@@ -32,5 +33,13 @@ class Salnikov: public lab
 	/**
 	* Один из градиентных методов
 	*/
+	double **multiplication(double **a, double **b);
+	double **multiplication(double **a, double *b);
+	double *multiplication(double *a, double **b);
+	double *multiplication(double *a, double *b);
+	double **transposition(double **a);
+	double sum(double *a);
 	virtual void lab7();
+
+	virtual void lab8();
 };
