@@ -34,8 +34,41 @@ void Sidorov::lab1()
 
 
 
-void Sidorov::lab2() {
+void Sidorov::lab2() 
+{
+	double coefficient;
+	int max;
 
+    for (int k=0; k<N-1; k++)
+    {
+      max = k;
+      for (int i=k+1; i<N; i++)
+			if(abs(A[i][k]) > abs(A[max][k])) max = i;
+        std::swap(A[max], A[k]);
+        std::swap(b[max], b[k]);
+
+        for (int i=k+1; i<N; i++)
+        {
+
+          coefficient = A[i][k]/A[k][k];
+          for (int j=k; j<N; j++)
+            A[i][j] = A[i][j] - coefficient*A[k][j];
+          b[i] = b[i] - coefficient*b[k];
+        }
+    }
+
+
+    for(int i = 0; i<N; i++)
+    {
+      x[i]=b[i];
+    }
+
+    for (int i=N-1;i>=0;i--)
+    {
+      for (int j=i+1;j<N;j++)
+        x[i] = x[i] - A[i][j]*x[j];
+      x[i] = x[i] / A[i][i];
+    }
 }
 
 void Sidorov::lab3() {
