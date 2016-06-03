@@ -8,20 +8,20 @@
  */
 void sadovnikovev::lab1()
 {
-	for (int i=0; i<n-1; i++)
-        for (int j=i+1; j<n; j++)
+	for (int i=0; i<N-1; i++)
+        for (int j=i+1; j<N; j++)
         {
             float coef=A[j][i]/A[i][i];
              b[j]-=coef*b[i];
-            for (int k=0; k<n; k++)
+            for (int k=0; k<N; k++)
 
                 A[j][k]-=coef*A[i][k];
         }
-        for(i=n-1;i>=0;i--)
+        for(int i=N-1;i>=0;i--)
         {
 
             x[i]=b[i]/A[i][i];
-            for(j=i+1;j<n;j++)
+            for(int j=i+1;j<N;j++)
             {
                 x[i]-=A[i][j]*x[j]/A[i][i];
             }
@@ -34,12 +34,12 @@ void sadovnikovev::lab1()
  */
 void sadovnikovev::lab2()
 {
- for (int i=0; i<n-1; i++)
-        for (int j=i+1; j<n; j++)
+ for (int i=0; i<N-1; i++)
+        for (int j=i+1; j<N; j++)
         {
             double aa = A[i][i];
             int st =i;
-            for (int k=i+1; k<n; k++)
+            for (int k=i+1; k<N; k++)
             {
                 if (abs(A[k][i])>abs(aa));
                 {
@@ -47,21 +47,21 @@ void sadovnikovev::lab2()
                     aa=A[k][i];
                 }
             }
-            for (int k=i; k<n; k++){
-        swap(A[st][k],A[i][k]);
+            for (int k=i; k<N; k++){
+        std::swap(A[st][k],A[i][k]);
             }
-            swap(b[st],b[i]);
+            std::swap(b[st],b[i]);
             float coef=A[j][i]/A[i][i];
              b[j]-=coef*b[i];
-            for (int k=0; k<n; k++)
+            for (int k=0; k<N; k++)
 
                 A[j][k]-=coef*A[i][k];
         }
-        for(i=n-1;i>=0;i--)
+        for(int i=N-1;i>=0;i--)
         {
 
             x[i]=b[i]/A[i][i];
-            for(j=i+1;j<n;j++)
+            for(int j=i+1;j<N;j++)
             {
                 x[i]-=A[i][j]*x[j]/A[i][i];
             }
@@ -84,7 +84,7 @@ void sadovnikovev::lab3()
 		for (int j=0; j<i; j++)
 		{
 			qq=0;
-			for (int k=0; k<j; k++) 
+			for (int k=0; k<j; k++)
 			qq+=L[i][k]*L[j][k];
 			L[i][j]=(A[i][j]-qq)/L[j][j];
 		}
@@ -98,14 +98,14 @@ void sadovnikovev::lab3()
 
 	for (int i=0; i<N; i++)
 	{
-		for (int j=i-1; j>=0; j--) 
+		for (int j=i-1; j>=0; j--)
 		b[i]-=L[i][j]*y[j];
 		y[i]=b[i]/L[i][i];
 	}
 
 	for (int i=N-1; i>=0; i--)
 	{
-		for (int j=i+1; j<N; j++) 
+		for (int j=i+1; j<N; j++)
 		y[i]-=L[j][i]*x[j];
 		x[i]=y[i]/L[i][i];
 	}
@@ -131,7 +131,7 @@ void sadovnikovev::lab4()
      P[i]=-A[i][i+1]/(A[i][i-1]*P[i-1]+A[i][i]);
      Q[i]=(b[i]-A[i][i-1]*Q[i-1])/(A[i][i-1]*P[i-1]+A[i][i]);
     }
-    x[N-1] = p[N-1];
+    x[N-1] = P[N-1];
     for(int i=N-1; i>=0; i--){
      x[i] = Q[i]*x[i+1]+P[i];
     };

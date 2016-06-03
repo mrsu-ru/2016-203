@@ -18,6 +18,7 @@ SOURCES= \
 				novikovdv.cpp	\
 				ploduhindm.cpp \
 				PolyaevaEV.cpp \
+				sadovnikovev.cpp \
 				Salnikov.cpp \
 				Samylkin.cpp \
 				Suharev.cpp \
