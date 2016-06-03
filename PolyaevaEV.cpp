@@ -161,21 +161,169 @@ void PolyaevaEV::lab5()
 }
 
 
-
 /**
  * Метод Зейделя
  */
+
+ void PolyaevaEV::zeroing(double *x)
+ {
+ 	for (int i = 0; i < N; i++) x[i] = 0;
+ }
+
+
 void PolyaevaEV::lab6()
 {
+  	double norm, eps = 0.00001;
+  	double* p = new double[N];
+  	zeroing(x);
 
+    do {
+          for (int i = 0; i < N; i++) p[i] = x[i];
+          for (int i = 0; i < N; i++)
+          {
+              double var = 0;
+              for (int j = 0; j < i; j++) var += (A[i][j] * x[j]);
+              for (int j = i + 1; j < N; j++) var += (A[i][j] * p[j]);
+              x[i] = (b[i] - var) / A[i][i];
+          }
+          norm = 0;
+          for (int i = 0; i < N; i++) norm += (x[i] - p[i])*(x[i] - p[i]);
+      }
+      while (sqrt(norm) >= eps);
+      delete[] p;
 }
 
 
 
 /**
- * Один из градиентных методов
+ * Метод минимальных невязок
  */
+
+ double PolyaevaEV::multiplication_of_vectors(double *x, double *y)
+ {
+     double a = 0;
+     for (int i = 0; i < N; i++) a += x[i]*y[i];
+     return a;
+ }
+
+ void PolyaevaEV::difference(double* x, double *y, double *z)
+ {
+ 	for (int i = 0; i < N; i++) x[i] = y[i] - z[i];
+ }
+
+ double* PolyaevaEV::multiplication_matrix_on_vector(double **A, double *y)
+ {
+      double *x = new double [N];
+      double m = 0;
+      for (int i = 0; i < N; i++)
+         {
+             for (int j = 0; j < N; j++) m += A[i][j]*y[j];
+             x[i] = m; m = 0;
+         }
+      return x;
+ }
+
+
 void PolyaevaEV::lab7()
 {
+    double norm, eps = 0.0001;
+    double* AP = new double[N];
+    double* DIS = new double[N];
+	  zeroing(x);
+	  zeroing(AP);
 
+    do {
+		    double *TEMP = multiplication_matrix_on_vector(A, x);
+		    difference(DIS, TEMP, b);
+
+        double tau = multiplication_of_vectors(DIS, DIS);
+		    double tempTau = multiplication_of_vectors(multiplication_matrix_on_vector(A, DIS), DIS);
+		    tau = tau/tempTau;
+		    if (tau != tau) tau = eps;
+
+		    for (int i = 0; i < N; i++) TEMP[i] = DIS[i]*tau;
+        difference(AP, AP, TEMP);
+
+        norm = fabs(x[0] - AP[0]);
+		    for (int i = 0; i < N; i++)
+        {
+			       if (fabs(x[i] - AP[i]) > norm) norm = fabs(x[i] - AP[i]);
+			       x[i] = AP[i];
+		    }
+		   delete[] TEMP;
+    } while (norm > eps);
+	  delete[] AP;
+	  delete[] DIS;
+}
+
+
+
+/**
+ * Метод вращения (метод Якоби)
+ */
+
+ void PolyaevaEV::transposition(double **a, double **result)
+{
+    for (int i = 0; i < N; ++i) {
+        for (int j = 0; j < N; ++j) {
+            result[i][j] = a[j][i];
+        }
+    }
+}
+
+void PolyaevaEV::multiplication(double **a, double **b, double **result)
+{
+    for (int i = 0; i < N; i++)
+        for (int j = 0; j < N; j++)
+		{
+            result[i][j] = 0;
+			for(int k = 0; k < N; k++) result[i][j] += a[i][k] *b[k][j];
+        }
+}
+
+void PolyaevaEV::lab8()
+{
+	double norm, eps = 0.0001;
+	double** M = new double*[N];
+	double** MT = new double*[N];
+	double** AA = new double*[N];
+	zeroing(x);
+
+	for (int i = 0; i < N; i++)
+	{
+		AA[i] = new double[N];
+		for (int j = 0; j < N; j++) AA[i][j] = 0;
+	};
+
+    do
+	{
+		int i_max = 0, j_max = 1;
+		double max_el = abs(A[0][1]);
+
+		for (int i = 0; i < N; i++)
+			for (int j = i+1; j < N; j++)
+				if (abs(A[i][j]) >= max_el) { max_el = abs(A[i][j]); i_max = i; j_max = j; };
+		double phi = atan(2*max_el/(A[i_max][i_max] - A[j_max][j_max]))/2;
+
+		for (int i = 0; i < N; i++) {
+			M[i] = new double[N]; MT[i] = new double[N];
+			for (int j = 0; j < N; j++) { MT[i][j] = 0; if(i == j) M[i][j] = 1; else M[i][j] = 0; };
+		};
+		M[i_max][i_max] = M[j_max][j_max] = cos(phi);
+		M[i_max][j_max] = - sin(phi);
+		M[j_max][i_max] = sin(phi);
+
+		transposition(M, MT);
+		multiplication(MT, A, AA);
+		multiplication(AA, M, A);
+
+    norm = 0;
+    for (int i = 0; i < N; i++)
+			  for (int j = i+1; j < N; j++) norm += pow(A[i][j],2);
+    } while (sqrt(norm) > eps);
+	for(int i = 0; i < N; i++) x[i] = A[i][i];
+
+	delete[] M;
+	delete[] MT;
+	delete[] AA;
 }
