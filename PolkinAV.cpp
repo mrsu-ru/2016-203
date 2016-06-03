@@ -153,7 +153,7 @@ void PolkinAV::lab3()
 /**
  * Метод прогонки
  */
-void ivanovii::lab4()
+void PolkinAV::lab4()
 {
 double* a = new double[N];
 	double* B = new double[N];
