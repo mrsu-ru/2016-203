@@ -53,8 +53,8 @@ for (int k = 0; k < N; k++)
   			}
   		}
   		//меняем строчки
-  		for (int j = 0; j < N; j++) swap(A[k][j], A[index][j]);
-  		swap(b[k], b[index]);
+  		for (int j = 0; j < N; j++) std::swap(A[k][j], A[index][j]);
+  		std::swap(b[k], b[index]);
 
   		for (int i = k; i < N; i++)
   		{
