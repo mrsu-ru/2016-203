@@ -47,8 +47,8 @@ void novikovdv::lab2()
                         }
                 }
              for (int j=0; j<N; j++)
-                swap(A[k][j], A[max_id][j]);
-                swap(b[k], b[max_id]);
+                std::swap(A[k][j], A[max_id][j]);
+                std::swap(b[k], b[max_id]);
 
 
         for(int i=k+1; i<N; i++)
@@ -178,7 +178,7 @@ void novikovdv::lab4()
 void novikovdv::lab5()
 {
     double* t = new double[N];
-    double eps = 0.001;
+    double eps = 1.0e-9;
 	double norm;
     do
         {
@@ -212,7 +212,7 @@ void novikovdv::lab5()
  */
 void novikovdv::lab6()
 {
-    double eps = 0.001;
+    double eps = 1.0e-9;
     double* t = new double[N];
     double norm = 0;
 
@@ -304,4 +304,3 @@ void novikovdv::lab7()
 	} while (norm > eps);
 	delete[] r;
 }
-
