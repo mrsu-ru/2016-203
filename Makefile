@@ -17,6 +17,7 @@ SOURCES= \
 				nazarovvi.cpp \
 				novikovdv.cpp	\
 				ploduhindm.cpp \
+				PolkinAV.cpp \
 				PolyaevaEV.cpp \
 				sadovnikovev.cpp \
 				Salnikov.cpp \

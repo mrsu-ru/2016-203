@@ -14,6 +14,7 @@
 #include "nazarovvi.h"
 #include "novikovdv.h"
 #include "ploduhindm.h"
+#include "PolkinAV.h"
 #include "PolyaevaEV.h"
 #include "sadovnikovev.h"
 #include "Salnikov.h"
@@ -73,6 +74,9 @@ int main(int argc, char** argv)
   }
   else if (strcmp(argv[1], "ploduhindm") == 0) {
     l = new ploduhindm();
+  }
+  else if (strcmp(argv[1], "polkinav") == 0) {
+    l = new PolkinAV();
   }
   else if (strcmp(argv[1], "polyaevaev") == 0) {
     l = new PolyaevaEV();
