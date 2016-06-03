@@ -185,6 +185,31 @@ double* a = new double[N];
  */
 void PolkinAV::lab5()
 {
+double eps = 0.001;
+	double* Y = new double[N];
+	double norm;
+
+	do {
+		for (int i = 0; i < N; i++)
+		{
+			Y[i] = b[i];
+			for (int k = 0; k < N; k++)
+			{
+				if (i != k) Y[i] -= A[i][k] * x[k];
+			}
+			Y[i] = Y[i]/A[i][i];
+		}
+
+        norm = fabs(x[0] - Y[0]);
+
+		for (int i = 0; i < N; i++)
+		{
+			if (fabs(x[i] - Y[i]) > norm) norm = fabs(x[i] - Y[i]);
+			x[i] = Y[i];
+		}
+	} while (norm > eps);
+
+	delete[] Y;
 
 }
 
