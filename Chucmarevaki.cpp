@@ -56,7 +56,7 @@ int max_el_idx;
   {
       c = A[k][i] / A[i][i];
       b[k] = b[k] - b[i]*c;
-      for (int j = 0; j < n; j++)
+      for (int j = 0; j < N; j++)
         A[k][j] = A[k][j] - A[i][j]*c;
   }
 
