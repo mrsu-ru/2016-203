@@ -276,8 +276,34 @@ void Zelyunko::lab4()
  */
 void Zelyunko::lab5()
 {
+double eps = 0.001;
+	double* Y = new double[N];
+	double norm;
+
+	do {
+		for (int i = 0; i < N; i++)
+		{
+			Y[i] = b[i];
+			for (int k = 0; k < N; k++)
+			{
+				if (i != k) Y[i] -= A[i][k] * x[k];
+			}
+			Y[i] = Y[i]/A[i][i];
+		}
+
+        norm = fabs(x[0] - Y[0]);
+
+		for (int i = 0; i < N; i++)
+		{
+			if (fabs(x[i] - Y[i]) > norm) norm = fabs(x[i] - Y[i]);
+			x[i] = Y[i];
+		}
+	} while (norm > eps);
+
+	delete[] Y;
 
 }
+
 
 
 
@@ -286,8 +312,37 @@ void Zelyunko::lab5()
  */
 void Zelyunko::lab6()
 {
-
+double eps = 0.001;
+     double* t = new double[N];
+    double norm = 0;
+  
+ 
+     for (int i = 0; i < N; i++)
+ 			x[i] = 0;
+ 	do
+ 	{
+ 		for (int i = 0; i < N; i++)
+ 			t[i] = x[i];
+  
+ 		for (int i = 0; i < N; i++)
+ 		{
+ 			double v = 0;
+ 			for (int j = 0; j < i; j++)
+ 				v += (A[i][j] * x[j]);
+ 
+ 			for (int j = i + 1; j < N; j++)
+ 				v += (A[i][j] * x[j]);
+ 			x[i] = (b[i] - v) / A[i][i];
+ 
+ 			norm=0;
+ 			for (int i = 0; i < N; i++)
+ 				norm += (x[i] - t[i])*(x[i] - t[i]);
+ 		}
+ 	} while (sqrt(norm) >= eps);
+ 
+ 	delete[] t;
 }
+
 
 
 
