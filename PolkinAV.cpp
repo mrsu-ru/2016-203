@@ -220,7 +220,35 @@ double eps = 0.001;
  */
 void PolkinAV::lab6()
 {
-
+double eps = 0.001;
+     double* t = new double[N];
+    double norm = 0;
+  
+ 
+     for (int i = 0; i < N; i++)
+ 			x[i] = 0;
+ 	do
+ 	{
+ 		for (int i = 0; i < N; i++)
+ 			t[i] = x[i];
+  
+ 		for (int i = 0; i < N; i++)
+ 		{
+ 			double v = 0;
+ 			for (int j = 0; j < i; j++)
+ 				v += (A[i][j] * x[j]);
+ 
+ 			for (int j = i + 1; j < N; j++)
+ 				v += (A[i][j] * x[j]);
+ 			x[i] = (b[i] - v) / A[i][i];
+ 
+ 			norm=0;
+ 			for (int i = 0; i < N; i++)
+ 				norm += (x[i] - t[i])*(x[i] - t[i]);
+ 		}
+ 	} while (sqrt(norm) >= eps);
+ 
+ 	delete[] t;
 }
 
 
