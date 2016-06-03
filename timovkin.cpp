@@ -1,43 +1,44 @@
 #include "timovkin.h"
 
 /**
- * РњРµС‚РѕРґ Р“Р°СѓСЃСЃР°
+ * Метод Гаусса
  */
 void timovkin::lab1()
 {
-float s;
+float c;
 for (int i = 0; i<N; i++)
-for (int k=i+1;k<N;k++)
-{
-s=A[k][i]/A[i][i];
-b[k]=b[k]-b[i]*s;
-for (int j=0;j<N;j++)
-A[k][j]=A[k][j]-A[i][j]*s;
-}
-for (int i = N-1; i>=0; i--)
-for (int k=i-1;k>=0;k--)
-{
-s=A[k][i]/A[i][i];
-b[k]=b[k]-b[i]*s;
-for (int j=N-1;j>=0;j--)
-A[k][j]=A[k][j]-A[i][j]*s;
-}
-for (int j = 0; j<N; j++)
-x[j]=b[j]/A[j][j];
+ for (int k=i+1;k<N;k++) //занулили ниже главной диагонали
+ {
+   c=A[k][i]/A[i][i];
+   b[k]=b[k]-b[i]*c;
+   for (int j=0;j<N;j++)
+     A[k][j]=A[k][j]-A[i][j]*c;
+ }
+ for (int i = N-1; i>=0; i--)
+ for (int k=i-1;k>=0;k--) //занулили выше главной диагонли
+ {
+   c=A[k][i]/A[i][i];
+   b[k]=b[k]-b[i]*c;
+   for (int j=N-1;j>=0;j--)
+     A[k][j]=A[k][j]-A[i][j]*c;
+ }
+ for (int j = 0; j<N; j++)
+    x[j]=b[j]/A[j][j];
 }
 
 
 /**
- * РњРµС‚РѕРґ Р“Р°СѓСЃСЃР° СЃ РІС‹Р±РѕСЂРѕРј РіР»Р°РІРЅРѕРіРѕ СЌР»РµРјРµРЅС‚Р°
+ * Метод Гаусса с выбором главного элемента
  */
 void timovkin::lab2()
 {
-  float s,c,max,l,l1;
+   float s,c,max1,l,l1;
  int p;
- max=abs(A[0][0]);int d=0;
+ max1=abs(A[0][0]);int d=0;
  for(int i=1; i<N;i++)
-   if (abs(A[i][0])>max)
-      { max=abs(A[i][0]); d=i;};
+   if (abs(A[i][0])>max1)
+      { max1=abs(A[i][0]); d=i;};
+
 if (p!=0)
 {
   for (int j=0;j<N;j++)
@@ -69,11 +70,11 @@ for (int k = 0; k<N; k++)
 }
 
 /**
- * РњРµС‚РѕРґ РєРІР°РґСЂР°С‚РЅРѕРіРѕ РєРѕСЂРЅСЏ (РјРµС‚РѕРґ РҐРѕР»РµС†РєРѕРіРѕ)
+ * Метод квадратного корня (метод Холецкого)
  */
 void timovkin::lab3()
-{ 
-   double** L = new double*[N];
+{
+double** L = new double*[N];
   for (int i=0; i<N; i++)
   L[i] = new double[N];
   double* y = new double[N];
@@ -114,35 +115,36 @@ void timovkin::lab3()
 }
 
 
-
 /**
- * пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+ * Метод прогонки
  */
-void timovkin::lab4()
+void Levshtanoviv::lab4()
 {
-     double* k=new double[N];
-     double* k1=new double[N];
-    k[0]=-A[0][1]/A[0][0];
+  double* k=new double[N];
+ double* k1=new double[N];
+    k[0]=-A[0][1]/A[0][0];  //начальные коэф k,k1
     k1[0]=b[0]/A[0][0];
-   for(int i=1;i<N;i++)
+   for(int i=1;i<N;i++) //в цикле высчитываем дальнейшие коэф
     {
      k[i]=-A[i][i+1]/(A[i][i-1]*k[i-1]+A[i][i]);
      k1[i]=(b[i]-A[i][i-1]*k1[i-1])/(A[i][i-1]*k[i-1]+A[i][i]);
     }
+    //вычисляем x
     x[N-1] = k1[N-1];
     for(int i=N-1; i>=0; i--){
      x[i] = k[i]*x[i+1]+k1[i];
     };
       delete[] k;
       delete[] k1;
+
 }
 
 
 
 /**
- * пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+ * Метод Якоби
  */
-void timovkin::lab5()
+void ivanov::lab5()
 {
 
 }
@@ -150,9 +152,9 @@ void timovkin::lab5()
 
 
 /**
- * пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+ * Метод Зейделя
  */
-void timovkin::lab6()
+void ivanov::lab6()
 {
 
 }
@@ -160,9 +162,9 @@ void timovkin::lab6()
 
 
 /**
- * пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+ * Один из градиентных методов
  */
-void timovkin::lab7()
+void ivanov::lab7()
 {
 
 }
