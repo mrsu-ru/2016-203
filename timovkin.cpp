@@ -33,37 +33,39 @@ x[j]=b[j]/A[j][j];
 void timovkin::lab2()
 {
   float s,c,max,l,l1;
- int d;
- max=abs(A[0][0]);d=0;
+ int p;
+ max=abs(A[0][0]);int d=0;
  for(int i=1; i<N;i++)
    if (abs(A[i][0])>max)
       { max=abs(A[i][0]); d=i;};
-
-if (d!=0)
+if (p!=0)
 {
   for (int j=0;j<N;j++)
    {
     l=A[0][j];    A[0][j]=A[d][j];    A[d][j]=l;
-    l1=b[0];    b[0]=b[d];    b[d]=l1;
+    l1=b[0];    b[0]=b[p];    b[p]=l1;
     }
 }
-
-for (int i = 0; i<N; i++)
- for (int k=i+1;k<N;k++)
- {
-   c=A[k][i]/A[i][i];
-   b[k]=b[k]-b[i]*c;
-   for (int j=0;j<N;j++)
-     A[k][j]=A[k][j]-A[i][j]*c;
- }
-
- for(int i=N-1;i>=0;i--)
+for (int k = 0; k<N; k++)
+     for (int i=k+1;i<N;i++)
      {
-      s=0;
-      for(int j=i+1;j<N;j++)
-        s=s+A[i][j]*x[j];
-      x[i]=(b[i]-s)/A[i][i];
-    }
+         float c=A[i][k]/A[k][k];
+         b[i]=b[i]-(b[k]*c);
+      for (int j=0;j<N;j++)
+      {
+           A[i][j]=A[i][j]-(A[k][j]*c);
+
+      }
+     }
+
+
+      for(int i=N-1; i>=0; i--)
+
+      {s=0;
+          for(int j=i+1; j<=N; j++)
+             s=s+A[i][j]*x[j];
+         x[i]=(b[i]-s)/(A[i][i]);
+      }
 }
 
 /**
